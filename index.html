@@ -99,7 +99,45 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
 .rl{font-family:'Oswald',sans-serif;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin:8px 0 3px;display:flex;justify-content:space-between}
 .rbg{height:8px;background:rgba(0,0,0,.1);overflow:hidden}
 .rf{height:100%;background:var(--red);transition:width .65s ease-out}
-/* 댓글 */
+/* 관계도·테스트 버튼 */
+.feat-btn{width:100%;background:var(--ink);color:var(--paper);border:none;padding:12px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;-webkit-tap-highlight-color:transparent;transition:background .15s}
+.feat-btn:active{background:#2a2a2a}
+.feat-icon{font-size:22px}
+.feat-title{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.08em;color:var(--paper)}
+.feat-sub{font-family:'Noto Serif KR',serif;font-size:9.5px;color:rgba(244,239,228,.6);font-style:italic}
+/* 관계도 팝업 */
+.rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px 6px}
+.rel-card{background:var(--paper-dark);border:1px solid rgba(0,0,0,.12);padding:9px 10px;position:relative}
+.rel-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.04em;color:var(--ink);margin-bottom:5px}
+.rel-item{font-family:'Noto Serif KR',serif;font-size:10px;line-height:1.55;color:#222;padding:2px 0;border-bottom:1px dotted rgba(0,0,0,.12);display:flex;gap:5px;align-items:baseline}
+.rel-item:last-child{border-bottom:none}
+.rel-tag{font-family:'Oswald',sans-serif;font-size:8px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;padding:1px 4px;border-radius:2px}
+.rel-tag.hos{background:#c8102e;color:#fff}
+.rel-tag.neu{background:#555;color:#fff}
+.rel-tag.unk{background:#9a7010;color:#fff}
+.rel-summary{padding:8px 14px 14px}
+.rel-summary p{font-family:'Noto Serif KR',serif;font-size:11px;line-height:1.7;color:#1c1c1c}
+/* 테스트 */
+.test-wrap{padding:12px 14px 20px}
+.test-q{font-family:'Noto Serif KR',serif;font-size:13px;font-weight:700;line-height:1.5;color:var(--ink);margin-bottom:10px}
+.test-q span{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:4px}
+.test-opts{display:flex;flex-direction:column;gap:6px}
+.test-opt{background:var(--paper-dark);border:1px solid rgba(0,0,0,.15);padding:9px 12px;font-family:'Noto Serif KR',serif;font-size:11.5px;line-height:1.5;color:var(--ink);cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;transition:all .15s}
+.test-opt:active,.test-opt.sel{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.test-progress{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.1em;color:var(--gray);margin-bottom:10px;text-transform:uppercase}
+.test-prog-bar{height:3px;background:rgba(0,0,0,.1);margin-bottom:14px;overflow:hidden}
+.test-prog-fill{height:100%;background:var(--red);transition:width .3s ease}
+/* 결과 */
+.result-wrap{padding:14px}
+.result-char{background:var(--ink);color:var(--paper);padding:14px;text-align:center;margin-bottom:10px}
+.result-num{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:var(--red)}
+.result-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;line-height:1.1}
+.result-pos{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.2em;opacity:.6;margin-top:2px}
+.result-compat{font-family:'Noto Serif KR',serif;font-size:12.5px;font-weight:700;color:var(--ink);margin:8px 0 4px}
+.result-desc{font-family:'Noto Serif KR',serif;font-size:11.5px;line-height:1.7;color:#1c1c1c}
+.result-retry{width:100%;background:var(--red);color:#fff;border:none;padding:10px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.1em;cursor:pointer;margin-top:12px;-webkit-tap-highlight-color:transparent}
+.result-retry:active{background:#a00020}
+.footer{background:var(--ink);color:rgba(244,239,228,.55);font-family:'Oswald',sans-serif;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:3px}
 .cmts{background:var(--paper-dark);border-top:2px solid var(--ink);padding:8px 10px;margin:8px 0}
 .cmts-title{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.1em;border-bottom:1px solid var(--ink);padding-bottom:3px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:baseline}
 .cmts-title small{font-family:'Oswald',sans-serif;font-size:8.5px;color:var(--gray);letter-spacing:.1em}
@@ -132,6 +170,8 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
 <body>
 
 <div class="modal" id="pmodal"><div class="pcard" id="pc"></div></div>
+<div class="modal" id="relmodal"><div class="pcard" id="relcard"></div></div>
+<div class="modal" id="testmodal"><div class="pcard" id="testcard"></div></div>
 
 <div class="np">
   <div class="top-bar"><span id="dout">—</span><span class="pip">BREAKING</span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d2b9b0b6b3bbbeab92b9bbbcb5a1b0a0bbb6b5b7fcb4b1">[email&#160;protected]</a></span></div>
@@ -216,7 +256,7 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
 
     <!-- 카페 목격 — 카페 사진 -->
     <span class="kicker g">목격담 독점</span>
-    <h2 class="hlg"><span class="pt" onclick="openP('lucas')">리베라</span>↔<span class="pt" onclick="openP('julian')">밴스</span>, 같은 카페 "우연히" — 각자 다른 테이블</h2>
+    <h2 class="hlg">사이 나쁘기로 유명한 <span class="pt" onclick="openP('julian')">밴스</span>↔<span class="pt" onclick="openP('lucas')">리베라</span>,<br>같은 카페서 "우연히" 47분 — 각자 다른 테이블</h2>
     <div class="byl">by Oliver Crane · 첼시 킹스로드</div>
 
     <div class="img-wrap sq">
@@ -224,7 +264,10 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
       <span class="cap">▲ 테이블 거리: 4m. 주문: 아메리카노 설탕 없이. 동일. 사진=독자 제보</span>
     </div>
 
-    <div class="bt"><p>서로 확인 후 47분간 각자 폰만 바라봄. "같이 나간 게 아니라고 확신할 수 없었다." — 목격자 최종 증언.</p></div>
+    <div class="bt">
+      <p>평소 라커룸에서도 눈을 마주치지 않는 두 선수가 같은 카페에서 목격됐다. 테이블 거리는 4m. 주문은 아메리카노, 설탕 없이. 동일.</p>
+      <p>퇴장 시각은 2분 차이였다. "같이 나간 게 아니라고 확신할 수 없었다." — 목격자 최종 증언.</p>
+    </div>
     <div class="pq">"거기 있었던 건 맞는데, 그 사람은 못 봤습니다."<cite>— Vance. Rivera도 정확히 같은 말. 본지는 믿지 않는다</cite></div>
 
     <div class="cmts">
@@ -257,33 +300,21 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
     <hr class="rd">
 
     <!-- 이적 루머 -->
-    <span class="kicker g">이적 루머 레이더</span>
-    <table class="tbl">
-      <tr><th>선수</th><th>루머</th><th class="n">신빙성</th></tr>
-      <tr><td class="hh pt" onclick="openP('julian')" style="cursor:pointer;color:var(--red)">J. Vance</td><td>PSG 비밀 접촉설</td><td class="n">67%</td></tr>
-      <tr><td class="pt" onclick="openP('lucas')" style="cursor:pointer;color:var(--red)">L. Rivera</td><td>바르셀로나 관심</td><td class="n">44%</td></tr>
-      <tr><td class="pt" onclick="openP('matthew')" style="cursor:pointer;color:var(--red)">M. Caldwell</td><td>"나는 안 떠난다" (본인)</td><td class="n">??%</td></tr>
-      <tr><td class="pt" onclick="openP('jace')" style="cursor:pointer;color:var(--red)">J. Holden</td><td>맨시티 스카우트 목격</td><td class="n">38%</td></tr>
-    </table>
-
-    <hr class="rn">
-
-    <div class="bx red" data-l="속보">
-      <span class="kicker" style="color:rgba(255,255,255,.6)">긴급</span>
-      <h3 class="hmd" style="color:#fff;font-size:13px"><span class="pt" style="color:rgba(255,200,200,.9)" onclick="openP('coach')">홀로웨이 감독</span>, 기자회견 12분째 "컨디션 최고"만 반복</h3>
-      <p style="font-family:'Noto Serif KR',serif;font-size:10.5px;color:rgba(255,255,255,.88);margin-top:3px">질문: 11개. 답변 종류: 1개. 본지 속기사 파견 포기.</p>
+    <!-- 관계도 + 궁합 테스트 버튼 -->
+    <hr class="rd">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 10px">
+      <button class="feat-btn" onclick="openRelation()">
+        <span class="feat-icon">🕸️</span>
+        <span class="feat-title">4인방 관계도</span>
+        <span class="feat-sub">얘네 사이가 어때요?</span>
+      </button>
+      <button class="feat-btn" onclick="startTest()">
+        <span class="feat-icon">⚽</span>
+        <span class="feat-title">캐릭터 궁합 테스트</span>
+        <span class="feat-sub">나는 누구랑 맞을까?</span>
+      </button>
     </div>
-
-    <div class="sbx" style="margin-top:8px">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.08em;border-bottom:1px solid var(--ink);padding-bottom:2px;margin-bottom:5px">🏛️ 구단주 알리스테어 크로우 이번 주</div>
-      <div class="bt" style="font-size:10.5px">
-        <p><b>월</b> — 스캔들 무마 수표 발행 (금액 미공개)</p>
-        <p><b>수</b> — "선수들은 구단 자산" 발언으로 구설</p>
-        <p><b>금</b> — 요트 파티. 참석자 명단: 비공개</p>
-      </div>
-    </div>
-
-    <hr class="rn">
+    <hr class="rd">
 
     <!-- 투표 -->
     <span class="kicker">팬 투표 — 탭해서 직접 투표!</span>
@@ -359,6 +390,195 @@ document.getElementById('pmodal').addEventListener('click',function(e){if(e.targ
   const D=['일','월','화','수','목','금','토'],n=new Date();
   document.getElementById('dout').textContent=`${n.getFullYear()}년 ${n.getMonth()+1}월 ${n.getDate()}일(${D[n.getDay()]}) · London`;
 })();
+
+/* ── 관계도 ── */
+const RELATIONS = {
+  julian:{
+    name:"Julian Vance", rels:[
+      {name:"Lucas Rivera", tag:"hos", label:"표면적 무관심 / 실제로는 둘만 아는 게 있음"},
+      {name:"Matthew Caldwell", tag:"hos", label:"세리머니 때 눈도 안 마주침. 서로 존재 부정 중"},
+      {name:"Jace Holden", tag:"unk", label:"새벽 클럽 동행 의혹. 본인들 부인 중"},
+      {name:"Gareth Holloway", tag:"neu", label:"감독은 밴스를 '컨디션 관리형 에이스'로 공식 인정"}
+    ]
+  },
+  lucas:{
+    name:"Lucas Rivera", rels:[
+      {name:"Julian Vance", tag:"unk", label:"카페 우연 목격. 동일 주문. 퇴장 2분 차이"},
+      {name:"Matthew Caldwell", tag:"hos", label:"라커 봉인 사건 진행 중. 단톡방 전쟁 중"},
+      {name:"Jace Holden", tag:"neu", label:"팀 내 유이한 단톡방 활성 멤버끼리 연대 의혹"},
+      {name:"Gareth Holloway", tag:"neu", label:"감독은 리베라를 '팀 분위기 담당'으로 활용 중"}
+    ]
+  },
+  matthew:{
+    name:"Matthew Caldwell", rels:[
+      {name:"Julian Vance", tag:"hos", label:"기자회견 동시 도착 후 2m 간격 유지. 현재진행형"},
+      {name:"Lucas Rivera", tag:"hos", label:"라커 봉인 공문 발행인. '결벽증은 철학' 주장"},
+      {name:"Jace Holden", tag:"hos", label:"넥타이 껌 접촉 사건 처리 중. 주장으로서 가장 힘든 관계"},
+      {name:"Gareth Holloway", tag:"neu", label:"감독의 공식 대변인 역할. 기자회견 앞줄 고정"}
+    ]
+  },
+  jace:{
+    name:"Jace Holden", rels:[
+      {name:"Julian Vance", tag:"unk", label:"새벽 클럽 동행 의혹. 유이하게 밴스에게 접근 가능한 인물"},
+      {name:"Lucas Rivera", tag:"neu", label:"팀 내 유이한 단톡방 활성 멤버. 비공식 연대"},
+      {name:"Matthew Caldwell", tag:"hos", label:"껌 투척 후 주장에게 '왜요?'라고 되물은 유일한 선수"},
+      {name:"Gareth Holloway", tag:"neu", label:"감독은 홀든을 '순수한 축구 본능'으로 해석 중 (오해)"}
+    ]
+  }
+};
+
+function openRelation(){
+  const rc = document.getElementById('relcard');
+  rc.innerHTML = `
+    <div class="ph">
+      <div><div class="phn">4인방 관계도</div><div class="php">WHO HATES WHO · KINGSBRIDGE FC</div></div>
+      <button class="pcls" onclick="closeRel()">✕ 닫기</button>
+    </div>
+    <div class="rel-grid">
+      ${Object.entries(RELATIONS).map(([id,p])=>`
+        <div class="rel-card">
+          <div class="rel-name">${p.name.split(' ')[0]}</div>
+          ${p.rels.map(r=>`
+            <div class="rel-item">
+              <span class="rel-tag ${r.tag}">${r.tag==='hos'?'혐관':r.tag==='unk'?'의혹':'중립'}</span>
+              <span>${r.name.split(' ')[0]} — ${r.label}</span>
+            </div>`).join('')}
+        </div>`).join('')}
+    </div>
+    <div class="rel-summary">
+      <p>※ 본 관계도는 본지 취재 기준. 당사자 전원 "별 일 없다" 주장 중. 우리는 믿지 않는다. 혐관지수 1위 콜드웰↔리베라 (라커봉인 현재진행형), 미확인 의혹 1위 밴스↔홀든 (새벽 클럽 동행설). 팀 화합도: 측정 불가.</p>
+    </div>`;
+  document.getElementById('relmodal').classList.add('on');
+}
+function closeRel(){document.getElementById('relmodal').classList.remove('on')}
+document.getElementById('relmodal').addEventListener('click',function(e){if(e.target===this)closeRel()});
+
+/* ── 궁합 테스트 ── */
+const QUESTIONS = [
+  {
+    q:"주말 오후, 나는?",
+    opts:[
+      {t:"VIP 클럽 예약 후 롤렉스 고르는 중", s:"julian"},
+      {t:"아무 카페나 들어가서 분위기 파악 중", s:"lucas"},
+      {t:"집에서 넥타이 다림질하며 스케줄 정리", s:"matthew"},
+      {t:"팀원한테 이유 없이 연락해서 같이 뭔가 하려는 중", s:"jace"}
+    ]
+  },
+  {
+    q:"누군가 나를 화나게 했을 때",
+    opts:[
+      {t:"미소 유지하며 롤렉스 만지작. 눈빛만 차갑게", s:"julian"},
+      {t:"웃는 얼굴로 가장 아픈 말 한마디 날림", s:"lucas"},
+      {t:"공문 한 장 작성 후 규정에 따라 처리", s:"matthew"},
+      {t:"그게 왜 잘못이에요? 진짜 모름", s:"jace"}
+    ]
+  },
+  {
+    q:"팀 단톡방에서 나는?",
+    opts:[
+      {t:"읽씹 전문. 필요할 때만 한 줄", s:"julian"},
+      {t:"이모지 연속 폭격 후 갑자기 오프라인", s:"lucas"},
+      {t:"규정 공지만 올림. 답장 강요 안 함", s:"matthew"},
+      {t:"아무 때나 보내고 읽었냐고 바로 확인 연락", s:"jace"}
+    ]
+  },
+  {
+    q:"원정 버스 안에서 나는?",
+    opts:[
+      {t:"이어폰 끼고 창문 봄. 말 걸지 마세요", s:"julian"},
+      {t:"옆 사람 은근슬쩍 관찰하며 약점 파악 중", s:"lucas"},
+      {t:"좌석 배치표 재검토 중. 청결 상태 점검", s:"matthew"},
+      {t:"심심해서 내기 제안하다 거절당하면 껌 투척", s:"jace"}
+    ]
+  }
+];
+
+const RESULTS = {
+  julian:{
+    compat:"줄리안 밴스 타입",
+    desc:"당신은 표면적으로 완벽하고 모든 걸 통제하는 것처럼 보이지만 실제로는 아무도 모르는 새벽 루틴이 있습니다. 롤렉스는 장식이 아니라 감정 조절 도구예요. '컨디션 관리 방식이 남들과 다를 뿐'이라는 말이 공감되신다면 당신은 이미 밴스입니다.",
+    tag:"#오만하지만 매력적 #새벽 3시가 황금시간"
+  },
+  lucas:{
+    compat:"루카스 리베라 타입",
+    desc:"당신은 겉으로는 여유롭고 능글맞지만 실제로는 모든 걸 관찰하고 있어요. 상대방이 방심하는 순간을 정확히 포착합니다. 단톡방 이모지 도배 후 갑자기 오프라인 하는 스타일. 라커가 봉인돼도 쿨하게 타투나 추가합니다.",
+    tag:"#능글능글 #관찰력 만렙 #허무주의자"
+  },
+  matthew:{
+    compat:"매튜 콜드웰 타입",
+    desc:"당신은 규율과 통제를 사랑하며 모든 문제를 공문 한 장으로 해결하려 합니다. 결벽증이 있고 넥타이는 항상 완벽하게 여며져 있어야 해요. 주변 사람들이 '왜 이렇게까지 하냐'고 물으면 '이게 기준'이라고 대답합니다.",
+    tag:"#규율이 곧 철학 #결벽증 #위선자 코스프레 중"
+  },
+  jace:{
+    compat:"제이스 홀든 타입",
+    desc:"당신은 나쁜 의도가 없는데 결과적으로 항상 사건 중심에 있습니다. 껌을 던진 건 그냥 재밌을 것 같아서였고 왜 다들 그렇게 보는지 진짜 이해가 안 돼요. 공감 능력이 낮다는 말을 듣지만 본인은 충분히 공감한다고 생각합니다.",
+    tag:"#맑눈광 #사고뭉치 #진심으로 모름"
+  }
+};
+
+let testAnswers = {};
+let currentQ = 0;
+
+function startTest(){
+  testAnswers = {};
+  currentQ = 0;
+  document.getElementById('testmodal').classList.add('on');
+  renderQ();
+}
+function closeTest(){document.getElementById('testmodal').classList.remove('on')}
+document.getElementById('testmodal').addEventListener('click',function(e){if(e.target===this)closeTest()});
+
+function renderQ(){
+  const tc = document.getElementById('testcard');
+  const q = QUESTIONS[currentQ];
+  const pct = Math.round((currentQ/QUESTIONS.length)*100);
+  tc.innerHTML = `
+    <div class="ph">
+      <div><div class="phn">캐릭터 궁합 테스트</div><div class="php">나는 누구랑 맞을까? · KINGSBRIDGE FC</div></div>
+      <button class="pcls" onclick="closeTest()">✕ 닫기</button>
+    </div>
+    <div class="test-wrap">
+      <div class="test-progress">질문 ${currentQ+1} / ${QUESTIONS.length}</div>
+      <div class="test-prog-bar"><div class="test-prog-fill" style="width:${pct}%"></div></div>
+      <div class="test-q"><span>Q${currentQ+1}</span>${q.q}</div>
+      <div class="test-opts">
+        ${q.opts.map((o,i)=>`<button class="test-opt" onclick="answerQ('${o.s}')">${o.t}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function answerQ(score){
+  testAnswers[score] = (testAnswers[score]||0) + 1;
+  currentQ++;
+  if(currentQ >= QUESTIONS.length){
+    showResult();
+  } else {
+    renderQ();
+  }
+}
+
+function showResult(){
+  const top = Object.entries(testAnswers).sort((a,b)=>b[1]-a[1])[0][0];
+  const r = RESULTS[top];
+  const p = PL[top];
+  const tc = document.getElementById('testcard');
+  tc.innerHTML = `
+    <div class="ph">
+      <div><div class="phn">결과 발표</div><div class="php">YOUR KINGSBRIDGE TYPE</div></div>
+      <button class="pcls" onclick="closeTest()">✕ 닫기</button>
+    </div>
+    <div class="result-wrap">
+      <div class="result-char">
+        <div class="result-num">#${p.number}</div>
+        <div class="result-name">${p.name}</div>
+        <div class="result-pos">${p.pos}</div>
+      </div>
+      <div class="result-compat">당신은 ${r.compat}입니다</div>
+      <div class="result-desc">${r.desc}</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.1em;color:var(--gray);margin-top:8px">${r.tag}</div>
+      <button class="result-retry" onclick="startTest()">다시 테스트하기 ▶</button>
+    </div>`;
+}
 
 function vote(btn){
   if(btn.classList.contains('vd'))return;
