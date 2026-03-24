@@ -368,8 +368,8 @@ window._RS={
   if(el)el.textContent=n.getFullYear()+'년 '+(n.getMonth()+1)+'월 '+n.getDate()+'일('+D[n.getDay()]+') · London';
 })();
 
-/* 투표 */
-(function(){
+/* 투표 + 모달 — DOM 로드 후 실행 */
+document.addEventListener('DOMContentLoaded',function(){
   var rows=document.querySelectorAll('.vote-row');
   var maxV=Math.max.apply(null,[].slice.call(rows).map(function(r){return +r.dataset.v;}));
   rows.forEach(function(row){
@@ -389,7 +389,7 @@ window._RS={
     var el=document.getElementById(id);
     if(el)el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
   });
-})();
+});
 
 /* BGM */
 window.bgmPlayer=null;
