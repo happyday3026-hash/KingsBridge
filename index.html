@@ -208,7 +208,7 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
 <div class="modal" id="permodal"><div class="pcard" id="percard"></div></div>
 
 <div class="np">
-  <div class="top-bar"><span id="dout">—</span><span class="pip">BREAKING</span><span>kbdaily@kingsbridge.fc</span></div>
+  <div class="top-bar"><span id="dout">—</span><span class="pip">BREAKING</span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="315a535550585d48715a585f56425343585556541f5752">[email&#160;protected]</a></span></div>
 
   <div class="masthead">
     <div class="pname">킹스브릿지<span class="daily">DAILY</span></div>
@@ -420,8 +420,18 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
   </div>
 </div>
 
-<script>
-/* ══ 데이터 ══ */
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ══ 전역 함수 (onclick에서 호출되므로 최상단 선언) ══ */
+function vote(btn){
+  if(btn.classList.contains('vd'))return;
+  btn.classList.add('vd');
+  const sp=btn.querySelector('span');
+  if(sp)sp.textContent=(+sp.textContent.replace(/,/g,'')+1).toLocaleString();
+}
+function closeP(){document.getElementById('pmodal').classList.remove('on')}
+function closePer(){document.getElementById('permodal').classList.remove('on')}
+function closeRel(){document.getElementById('relmodal').classList.remove('on')}
+function closeTest(){document.getElementById('testmodal').classList.remove('on')}
 const PL={
   julian:{name:"줄리안",pos:"STRIKER · ST",number:"9",stats:[{v:"19",k:"Goals"},{v:"7",k:"Assists"},{v:"87%",k:"Dribble"},{v:"9.1",k:"Rating"},{v:"£72M",k:"Value"},{v:"∞",k:"Ego"}],scandals:["새벽 3시 메이페어 클럽 출입 (이번 주)","PSG 이적 루머 — 부인 후 파리행 항공편 확인","카페 우연 목격 — 루카스와 동일 주문","기자회견 감독 발언 롤렉스 만지며 정정","VIP 요트 파티 단독 전세 논란"],rumour:67},
   lucas:{name:"루카스",pos:"MIDFIELDER · MF",number:"11",stats:[{v:"8",k:"Goals"},{v:"14",k:"Assists"},{v:"91%",k:"Pass"},{v:"8.3",k:"Rating"},{v:"£51M",k:"Value"},{v:"99",k:"Charisma"}],scandals:["매튜 주장에 의해 라커 3일째 봉인 중","팀 단톡방 불만 이모지 도배 — 전원 읽음","바르셀로나 이적 루머 (부인 중)","카페 우연 목격 — 줄리안와 동일 주문","타투 규정 위반 심의 중"],rumour:44},
@@ -453,7 +463,6 @@ function openP(id){
   document.getElementById('pmodal').classList.add('on');
   requestAnimationFrame(()=>requestAnimationFrame(()=>{const b=document.querySelector('.rf');if(b)b.style.width=b.dataset.t+'%'}));
 }
-function closeP(){document.getElementById('pmodal').classList.remove('on')}
 document.getElementById('pmodal').addEventListener('click',function(e){if(e.target===this)closeP()});
 
 /* ══ 페르소나 팝업 ══ */
@@ -472,7 +481,6 @@ function openPersona(id){
     </div>`;
   document.getElementById('permodal').classList.add('on');
 }
-function closePer(){document.getElementById('permodal').classList.remove('on')}
 document.getElementById('permodal').addEventListener('click',function(e){if(e.target===this)closePer()});
 
 /* ══ 관계도 팝업 ══ */
@@ -494,7 +502,6 @@ function openRelation(){
     <div class="rel-note">※ 혐관 최강: 매튜↔루카스 (라커봉인 현재진행형). 미확인 의혹 최강: 줄리안↔제이스 (새벽클럽 동행설). 줄리안↔루카스는 카페 사건 이후 '의혹'으로 격상. 팀 화합도: 측정 불가.</div>`;
   document.getElementById('relmodal').classList.add('on');
 }
-function closeRel(){document.getElementById('relmodal').classList.remove('on')}
 document.getElementById('relmodal').addEventListener('click',function(e){if(e.target===this)closeRel()});
 
 /* ══ 궁합 테스트 ══ */
@@ -512,7 +519,6 @@ const RS={
 };
 let answers={},curQ=0;
 function startTest(){answers={};curQ=0;document.getElementById('testmodal').classList.add('on');renderQ();}
-function closeTest(){document.getElementById('testmodal').classList.remove('on')}
 document.getElementById('testmodal').addEventListener('click',function(e){if(e.target===this)closeTest()});
 function renderQ(){
   const q=QS[curQ];
@@ -559,11 +565,4 @@ function showResult(){
       const newV=+this.dataset.v+1;
       this.dataset.v=newV;
       const cnt=this.querySelector('.vcnt');
-      if(cnt)cnt.textContent=newV.toLocaleString();
-      maxV=Math.max(maxV,newV);
-      rows.forEach(r=>{const bar=r.querySelector('.vbar');if(bar)bar.style.width=Math.round(+r.dataset.v/maxV*100)+'%';});
-    });
-  });
-})();
-
-/* ══ 댓글 좋아요/싫어요 ══ */
+      if(cnt)cnt.textContent=newV.toLocale
