@@ -198,6 +198,69 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
   @keyframes sup{from{transform:scale(.92) translateY(12px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
 }
 </style>
+<script>
+// 전역 함수 — head에 선언해서 클라우드플레어 스크립트 삽입과 무관하게 항상 작동
+window.vote=function(btn){
+  if(btn.classList.contains('vd'))return;
+  btn.classList.add('vd');
+  var sp=btn.querySelector('span');
+  if(sp)sp.textContent=(+sp.textContent.replace(/,/g,'')+1).toLocaleString();
+};
+window.closeP=function(){var m=document.getElementById('pmodal');if(m)m.classList.remove('on');};
+window.closePer=function(){var m=document.getElementById('permodal');if(m)m.classList.remove('on');};
+window.closeRel=function(){var m=document.getElementById('relmodal');if(m)m.classList.remove('on');};
+window.closeTest=function(){var m=document.getElementById('testmodal');if(m)m.classList.remove('on');};
+window.openP=function(id){
+  var PL=window._PL;if(!PL||!PL[id])return;
+  var p=PL[id];
+  var card=document.getElementById('pc');if(!card)return;
+  card.innerHTML='<div class="ph"><div><div class="phn">'+p.name+'</div><div class="php">'+p.pos+'</div></div><div class="phno">#'+p.number+'</div><button class="pcls" onclick="closeP()">✕ 닫기</button></div><div class="pb"><div class="sg">'+p.stats.map(function(s){return '<div class="sc"><div class="sv">'+s.v+'</div><div class="sk">'+s.k+'</div></div>';}).join('')+'</div><div class="sct">📋 스캔들 이력</div>'+p.scandals.map(function(s){return '<div class="sci">• '+s+'</div>';}).join('')+'<div class="rl"><span>이적 루머 지수</span><span>'+p.rumour+'%</span></div><div class="rbg"><div class="rf" style="width:0" data-t="'+p.rumour+'"></div></div></div>';
+  document.getElementById('pmodal').classList.add('on');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){var b=document.querySelector('.rf');if(b)b.style.width=b.dataset.t+'%';});});
+};
+window.openPersona=function(id){
+  var PERSONAS=window._PERSONAS;if(!PERSONAS||!PERSONAS[id])return;
+  var p=PERSONAS[id];
+  var btn=event.currentTarget;
+  document.querySelectorAll('.persona-btn').forEach(function(b){b.classList.remove('sel');});
+  if(btn)btn.classList.add('sel');
+  var card=document.getElementById('percard');if(!card)return;
+  card.innerHTML='<div class="ph"><div><div class="phn">포지션 선택</div><div class="php">YOUR ROLE · KINGSBRIDGE FC</div></div><button class="pcls" onclick="closePer()">✕ 닫기</button></div><div class="per-body"><div class="per-hero"><div class="per-icon">'+p.icon+'</div><div class="per-name">'+p.name+'</div><div class="per-desc">'+p.desc+'</div></div><div class="per-react-title">4인방 첫 반응</div><div class="per-react">'+p.reacts.map(function(r){return '<div class="per-react-item"><div class="per-react-name">'+r.name+'</div><div class="per-react-txt">'+r.txt+'</div></div>';}).join('')+'</div><div class="per-route-title">추천 시작 루트</div><div class="per-route"><p>'+p.route+'</p></div></div>';
+  document.getElementById('permodal').classList.add('on');
+};
+window.openRelation=function(){
+  var RELATIONS=window._RELATIONS;if(!RELATIONS)return;
+  var card=document.getElementById('relcard');if(!card)return;
+  card.innerHTML='<div class="ph"><div><div class="phn">4인방 관계도</div><div class="php">WHO HATES WHO · KINGSBRIDGE FC</div></div><button class="pcls" onclick="closeRel()">✕ 닫기</button></div><div class="rel-grid">'+RELATIONS.map(function(p){return '<div class="rel-card"><div class="rel-name">'+p.name+'</div>'+p.rels.map(function(r){return '<div class="rel-item"><span class="rel-tag '+r.tag+'">'+(r.tag==='hos'?'혐관':r.tag==='unk'?'의혹':'중립')+'</span><span>'+r.n+' — '+r.l+'</span></div>';}).join('')+'</div>';}).join('')+'</div><div class="rel-note">※ 혐관 최강: 매튜↔루카스 (라커봉인 현재진행형). 미확인 의혹 최강: 줄리안↔제이스 (새벽클럽 동행설). 팀 화합도: 측정 불가.</div>';
+  document.getElementById('relmodal').classList.add('on');
+};
+window.startTest=function(){
+  window._answers={};window._curQ=0;
+  document.getElementById('testmodal').classList.add('on');
+  window.renderQ();
+};
+window.renderQ=function(){
+  var QS=window._QS;var curQ=window._curQ;
+  var q=QS[curQ];
+  var pct=Math.round((curQ/QS.length)*100);
+  var card=document.getElementById('testcard');if(!card)return;
+  card.innerHTML='<div class="ph"><div><div class="phn">캐릭터 궁합 테스트</div><div class="php">나는 누구랑 맞을까?</div></div><button class="pcls" onclick="closeTest()">✕ 닫기</button></div><div class="test-wrap"><div class="test-progress">질문 '+(curQ+1)+' / '+QS.length+'</div><div class="test-prog-bar"><div class="test-prog-fill" style="width:'+pct+'%"></div></div><div class="test-q"><span>Q'+(curQ+1)+'</span>'+q.q+'</div><div class="test-opts">'+q.opts.map(function(o){return '<button class="test-opt" onclick="answerQ(\''+o.s+'\')">'+o.t+'</button>';}).join('')+'</div></div>';
+};
+window.answerQ=function(s){
+  if(!window._answers)window._answers={};
+  window._answers[s]=(window._answers[s]||0)+1;
+  window._curQ++;
+  if(window._curQ>=(window._QS||[]).length)window.showResult();
+  else window.renderQ();
+};
+window.showResult=function(){
+  var RS=window._RS;var PL=window._PL;
+  var top=Object.entries(window._answers).sort(function(a,b){return b[1]-a[1];})[0][0];
+  var r=RS[top];var p=PL[top];
+  var card=document.getElementById('testcard');if(!card)return;
+  card.innerHTML='<div class="ph"><div><div class="phn">결과 발표</div><div class="php">YOUR KINGSBRIDGE TYPE</div></div><button class="pcls" onclick="closeTest()">✕ 닫기</button></div><div class="test-wrap"><div class="result-char"><div class="result-num">#'+p.number+'</div><div class="result-name">'+p.name+'</div><div class="result-pos">'+p.pos+'</div></div><div class="result-compat">당신은 '+r.compat+'입니다</div><div class="result-desc">'+r.desc+'</div><div class="result-tag">'+r.tag+'</div><button class="result-retry" onclick="startTest()">다시 테스트하기 ▶</button></div>';
+};
+</script>
 </head>
 <body>
 
@@ -420,19 +483,72 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ══ 전역 함수 (onclick에서 호출되므로 최상단 선언) ══ */
-function vote(btn){
-  if(btn.classList.contains('vd'))return;
-  btn.classList.add('vd');
-  const sp=btn.querySelector('span');
-  if(sp)sp.textContent=(+sp.textContent.replace(/,/g,'')+1).toLocaleString();
-}
-function closeP(){document.getElementById('pmodal').classList.remove('on')}
-function closePer(){document.getElementById('permodal').classList.remove('on')}
-function closeRel(){document.getElementById('relmodal').classList.remove('on')}
-function closeTest(){document.getElementById('testmodal').classList.remove('on')}
-const PL={
+<script>
+/* 데이터 등록 — window._ 전역으로 */
+window._PL={
+  julian:{name:"줄리안",pos:"STRIKER · ST",number:"9",stats:[{v:"19",k:"Goals"},{v:"7",k:"Assists"},{v:"87%",k:"Dribble"},{v:"9.1",k:"Rating"},{v:"£72M",k:"Value"},{v:"∞",k:"Ego"}],scandals:["새벽 3시 메이페어 클럽 출입 (이번 주)","PSG 이적 루머 — 부인 후 파리행 항공편 확인","카페 우연 목격 — 루카스와 동일 주문","기자회견 감독 발언 롤렉스 만지며 정정","VIP 요트 파티 단독 전세 논란"],rumour:67},
+  lucas:{name:"루카스",pos:"MIDFIELDER · MF",number:"11",stats:[{v:"8",k:"Goals"},{v:"14",k:"Assists"},{v:"91%",k:"Pass"},{v:"8.3",k:"Rating"},{v:"£51M",k:"Value"},{v:"99",k:"Charisma"}],scandals:["매튜 주장에 의해 라커 3일째 봉인 중","팀 단톡방 불만 이모지 도배 — 전원 읽음","바르셀로나 이적 루머 (부인 중)","카페 우연 목격 — 줄리안과 동일 주문","타투 규정 위반 심의 중"],rumour:44},
+  matthew:{name:"매튜",pos:"CAPTAIN · CB",number:"5",stats:[{v:"2",k:"Goals"},{v:"1",k:"Assists"},{v:"96%",k:"Tackles"},{v:"8.6",k:"Rating"},{v:"£48M",k:"Value"},{v:"강박",k:"결벽"}],scandals:["루카스 라커 '위생 점검' 공문으로 봉인","팀 단톡방에 '규정준수' 스티커로 응수","기자회견 넥타이 여밈 강박 — 17회 포착","제이스 전술 무시 사건 처리 중","이적설 본인 직접 부인"],rumour:12},
+  jace:{name:"제이스",pos:"WINGER · WG",number:"7",stats:[{v:"11",k:"Goals"},{v:"9",k:"Assists"},{v:"93%",k:"Speed"},{v:"8.0",k:"Rating"},{v:"£38M",k:"Value"},{v:"??",k:"공감능력"}],scandals:["전술 무시 단독 돌파 후 골 — '근데 들어갔잖아요'","주장 매튜 기자회견 중 침묵 유발","새벽 클럽 동행 의혹 (줄리안과)","맨시티 스카우트 3경기 연속 목격","훈련 중 감독 전술 설명 중 딴 생각 포착"],rumour:38},
+  coach:{name:"Gareth Holloway",pos:"HEAD COACH",number:"—",stats:[{v:"68%",k:"승률"},{v:"12",k:"기자회견"},{v:"1",k:"답변종류"},{v:"23",k:"거짓말"},{v:"55",k:"나이"},{v:"∞",k:"뻔뻔함"}],scandals:["기자회견 12분간 동일 답변 반복","선수 새벽 외출 '컨디션 관리' 해명","스캔들 무마 구단주 공모 의혹","팀 전술 '선수들만 아는 비밀' 발언","라커룸 사건 '열정적 소통'으로 서술"],rumour:55}
+};
+window._PERSONAS={
+  vip:{icon:"💰",name:"VIP 스폰서 자제",desc:"아버지가 킹스브릿지 최대 후원자. 구단 내에서 공식적으로는 '건드리면 안 되는 존재'로 분류된다. 비공식적으로는 어떻게 분류되는지가 문제.",reacts:[{name:"줄리안",txt:"\"오, 크로우 회장 자제분? ...관심 없어요.\" (롤렉스 만지작. 관심 있음)"},{name:"루카스",txt:"\"후원자 자제라고요? 재밌네요.\" (목덜미 스캔 중)"},{name:"매튜",txt:"\"규정상 특혜는 없습니다.\" (넥타이 여밈. 표정은 복잡)"},{name:"제이스",txt:"\"와 아버지가 돈 많아요? 저도 껌 줄까요?\""}],route:"추천 루트: 구단 VIP 박스 → 훈련장 관람 → '우연한' 라커룸 조우. 권력이 있어서 무시할 수 없고, 인간이라서 무시하고 싶은 4인방의 딜레마 시작."},
+  analyst:{icon:"📊",name:"구단 전속 분석관",desc:"전술 데이터 분석 계약직으로 소환됐다. 선수들의 경기 데이터를 다루는 업무인데 오늘 밤 어쩌다 보니 용도가 완전히 달라졌다.",reacts:[{name:"줄리안",txt:"\"내 데이터 분석하러 왔다고요? 나는 데이터로 안 읽혀요.\" (틀림)"},{name:"루카스",txt:"\"xG 수치 말고 나한테 관심 있는 거 있어요?\" (능글맞게)"},{name:"매튜",txt:"\"분석 결과를 공식 보고서로 제출하세요.\" (선 긋는 중)"},{name:"제이스",txt:"\"제 데이터 보면 뭐가 나와요?\""}],route:"추천 루트: 경기 후 데이터 미팅 → 야근 중 우연한 조우 → '분석 대상'이 달라지는 순간."},
+  reporter:{icon:"🎙️",name:"스포츠 전문 기자",desc:"킹스브릿지 담당 취재 기자. 기사를 쓰러 왔는데 어느 순간 내가 기사가 됐다.",reacts:[{name:"줄리안",txt:"\"오프 더 레코드로 말하는데... 녹음하고 있죠?\" (알면서 말함)"},{name:"루카스",txt:"\"기자한테 이러면 안 되는 거 알아요. 그래서 재밌는 거고.\""},{name:"매튜",txt:"\"공식 인터뷰 외 발언은 인용 불가입니다.\" (그러나 말이 많아짐)"},{name:"제이스",txt:"\"저 기사 나면 SNS에 공유해줘요!\""}],route:"추천 루트: 기자회견 → 단독 인터뷰 요청 → 취재와 사생활의 경계가 무너지는 순간."},
+  medic:{icon:"💊",name:"구단 의료 스태프",desc:"선수 컨디션 관리 담당. 어떤 선수들은 '컨디션 체크'의 범위를 다르게 이해하고 있는 것 같다.",reacts:[{name:"줄리안",txt:"\"나 어디 아픈 데 없어요. 그냥 있어도 되나요?\""},{name:"루카스",txt:"\"어깨 여기가 좀 뭉쳐서요.\" (뭉친 부위가 계속 늘어남)"},{name:"매튜",txt:"\"정기 검진 일정에 따라 진행하겠습니다.\" (유일하게 제대로 협조)"},{name:"제이스",txt:"\"껌 너무 씹으면 턱 나빠지나요? 진지하게요.\""}],route:"추천 루트: 정기 컨디션 체크 → 부상 선수 단독 케어 → 경기장 밖 선수들의 민낯과 마주하는 순간."},
+  rival:{icon:"⚽",name:"라이벌 구단 선수",desc:"경기장에서는 적이다. 그런데 이렇게 됐다. 팀 동료들이 알면 큰일 나는 상황.",reacts:[{name:"줄리안",txt:"\"적팀 선수? ...더 흥미롭네요.\" (롤렉스 멈춤)"},{name:"루카스",txt:"\"경기장에서 만났을 때랑 지금이랑 완전 다르죠?\""},{name:"매튜",txt:"\"이건 규정 위반입니다.\" (알면서도 그 자리에 있음)"},{name:"제이스",txt:"\"적팀이면 경기 때 파울 하면 안 되겠네요. 고민해볼게요.\""}],route:"추천 루트: 경기 후 믹스드존 → 우연한 재조우 → 유니폼 바깥의 관계가 시작되는 순간."},
+  free:{icon:"✏️",name:"자유 설정",desc:"정해진 역할 없이 킹스브릿지 FC에 발을 들인 당신. 어떤 이유든, 어떤 포지션이든.",reacts:[{name:"줄리안",txt:"\"당신이 누군지 모르겠는데.\" (그래서 더 신경 쓰임)"},{name:"루카스",txt:"\"설정이 없다는 게 제일 흥미로운 설정이죠.\""},{name:"매튜",txt:"\"신원 확인이 필요합니다.\" (공문 준비 중)"},{name:"제이스",txt:"\"저랑 친구 해요!\""}],route:"추천 루트: 완전 자유. 시작설정에서 원하는 배경을 직접 써주세요."}
+};
+window._RELATIONS=[
+  {id:'julian',name:'줄리안',rels:[{n:'루카스',tag:'unk',l:'카페 우연 목격. 동일 주문. 퇴장 2분 차이'},{n:'매튜',tag:'hos',l:'세리머니 때 눈도 안 마주침. 서로 존재 부정 중'},{n:'제이스',tag:'unk',l:'새벽 클럽 동행 의혹. 유이하게 줄리안 옆에 있을 수 있는 인물'}]},
+  {id:'lucas',name:'루카스',rels:[{n:'줄리안',tag:'unk',l:'동일 주문 카페 목격. 47분간 폰만 봄'},{n:'매튜',tag:'hos',l:'라커 봉인 공문 발행인. 단톡방 전쟁 3일째'},{n:'제이스',tag:'neu',l:'팀 내 유일한 단톡방 활성 멤버 연대 의혹'}]},
+  {id:'matthew',name:'매튜',rels:[{n:'줄리안',tag:'hos',l:'기자회견 동시 도착 후 2m 간격 유지'},{n:'루카스',tag:'hos',l:'라커 봉인 공문 발행. 기준이 곧 규정'},{n:'제이스',tag:'hos',l:'전술 무시 골 사건. 주장으로서 가장 힘든 관계'}]},
+  {id:'jace',name:'제이스',rels:[{n:'줄리안',tag:'unk',l:'새벽 클럽 동행 의혹. 유이하게 줄리안 옆에 있을 수 있는 인물'},{n:'루카스',tag:'neu',l:'단톡방 유이 활성 멤버. 비공식 연대'},{n:'매튜',tag:'hos',l:'전술 무시 후 주장 침묵 유발. 현재진행형'}]}
+];
+window._QS=[
+  {q:"주말 오후, 나는?",opts:[{t:"VIP 클럽 예약 후 롤렉스 고르는 중",s:"julian"},{t:"아무 카페나 들어가서 분위기 파악 중",s:"lucas"},{t:"집에서 넥타이 다림질하며 스케줄 정리",s:"matthew"},{t:"팀원한테 이유 없이 연락해서 같이 뭔가 하려는 중",s:"jace"}]},
+  {q:"누군가 나를 화나게 했을 때",opts:[{t:"미소 유지하며 눈빛만 차갑게",s:"julian"},{t:"웃는 얼굴로 가장 아픈 말 한마디 날림",s:"lucas"},{t:"공문 한 장 작성 후 규정에 따라 처리",s:"matthew"},{t:"그게 왜 잘못이에요? 진짜 모름",s:"jace"}]},
+  {q:"팀 단톡방에서 나는?",opts:[{t:"읽씹 전문. 필요할 때만 한 줄",s:"julian"},{t:"이모지 연속 폭격 후 갑자기 오프라인",s:"lucas"},{t:"규정 공지만 올림. 답장 강요 안 함",s:"matthew"},{t:"아무 때나 보내고 읽었냐고 바로 확인 연락",s:"jace"}]},
+  {q:"원정 버스 안에서 나는?",opts:[{t:"이어폰 끼고 창문 봄. 말 걸지 마세요",s:"julian"},{t:"옆 사람 은근슬쩍 관찰하며 약점 파악 중",s:"lucas"},{t:"좌석 배치표 재검토 중. 청결 상태 점검",s:"matthew"},{t:"심심해서 내기 제안하다 거절당하면 껌 투척",s:"jace"}]}
+];
+window._RS={
+  julian:{compat:"줄리안 타입",desc:"표면적으로 완벽하고 모든 걸 통제하는 것처럼 보이지만 실제로는 아무도 모르는 새벽 루틴이 있습니다. 롤렉스는 장식이 아니라 감정 조절 도구예요.",tag:"#오만하지만 매력적 #새벽 3시가 황금시간"},
+  lucas:{compat:"루카스 타입",desc:"겉으로는 여유롭고 능글맞지만 실제로는 모든 걸 관찰하고 있어요. 단톡방 이모지 도배 후 갑자기 오프라인 하는 스타일. 라커가 봉인돼도 타투나 추가합니다.",tag:"#능글능글 #관찰력 만렙 #라커봉인도 쿨하게"},
+  matthew:{compat:"매튜 타입",desc:"규율과 통제를 사랑하며 모든 문제를 공문 한 장으로 해결하려 합니다. '기준이 곧 규정이다'라는 말이 공감된다면 이미 매튜입니다.",tag:"#규율이 곧 철학 #결벽증 #공문작성력 만렙"},
+  jace:{compat:"제이스 타입",desc:"나쁜 의도가 없는데 결과적으로 항상 사건 중심에 있습니다. 지시를 안 따랐는데 골이 들어갔고 왜 문제인지 진짜 이해가 안 돼요.",tag:"#맑눈광 #근데 들어갔잖아요 #공감능력 ??"}
+};
+
+/* 날짜 */
+(function(){
+  var D=['일','월','화','수','목','금','토'],n=new Date();
+  var el=document.getElementById('dout');
+  if(el)el.textContent=n.getFullYear()+'년 '+(n.getMonth()+1)+'월 '+n.getDate()+'일('+D[n.getDay()]+') · London';
+})();
+
+/* 투표 */
+(function(){
+  var rows=document.querySelectorAll('.vote-row');
+  var maxV=Math.max.apply(null,[].slice.call(rows).map(function(r){return +r.dataset.v;}));
+  rows.forEach(function(row){
+    row.addEventListener('click',function(){
+      if(this.classList.contains('voted'))return;
+      this.classList.add('voted');
+      var newV=+this.dataset.v+1;
+      this.dataset.v=newV;
+      var cnt=this.querySelector('.vcnt');
+      if(cnt)cnt.textContent=newV.toLocaleString();
+      maxV=Math.max(maxV,newV);
+      rows.forEach(function(r){var bar=r.querySelector('.vbar');if(bar)bar.style.width=Math.round(+r.dataset.v/maxV*100)+'%';});
+    });
+  });
+  /* 모달 오버레이 클릭 닫기 */
+  ['pmodal','relmodal','testmodal','permodal'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
+  });
+})();
+</script>
   julian:{name:"줄리안",pos:"STRIKER · ST",number:"9",stats:[{v:"19",k:"Goals"},{v:"7",k:"Assists"},{v:"87%",k:"Dribble"},{v:"9.1",k:"Rating"},{v:"£72M",k:"Value"},{v:"∞",k:"Ego"}],scandals:["새벽 3시 메이페어 클럽 출입 (이번 주)","PSG 이적 루머 — 부인 후 파리행 항공편 확인","카페 우연 목격 — 루카스와 동일 주문","기자회견 감독 발언 롤렉스 만지며 정정","VIP 요트 파티 단독 전세 논란"],rumour:67},
   lucas:{name:"루카스",pos:"MIDFIELDER · MF",number:"11",stats:[{v:"8",k:"Goals"},{v:"14",k:"Assists"},{v:"91%",k:"Pass"},{v:"8.3",k:"Rating"},{v:"£51M",k:"Value"},{v:"99",k:"Charisma"}],scandals:["매튜 주장에 의해 라커 3일째 봉인 중","팀 단톡방 불만 이모지 도배 — 전원 읽음","바르셀로나 이적 루머 (부인 중)","카페 우연 목격 — 줄리안와 동일 주문","타투 규정 위반 심의 중"],rumour:44},
   matthew:{name:"매튜",pos:"CAPTAIN · CB",number:"5",stats:[{v:"2",k:"Goals"},{v:"1",k:"Assists"},{v:"96%",k:"Tackles"},{v:"8.6",k:"Rating"},{v:"£48M",k:"Value"},{v:"강박",k:"결벽"}],scandals:["루카스 라커 '위생 점검' 공문으로 봉인","팀 단톡방에 '규정준수' 스티커로 응수","기자회견 넥타이 여밈 강박 — 17회 포착","제이스 껌 투척 사건 처리 중","이적설 본인 직접 부인"],rumour:12},
@@ -449,120 +565,5 @@ const PERSONAS={
   free:{icon:"✏️",name:"자유 설정",desc:"정해진 역할 없이 킹스브릿지 FC에 발을 들인 당신. 어떤 이유든, 어떤 포지션이든 — 이 팀에서 무슨 일이 일어날지는 당신이 결정한다.",reacts:[{name:"줄리안",txt:"\"당신이 누군지 모르겠는데.\" (그래서 더 신경 쓰임)"},{name:"루카스",txt:"\"설정이 없다는 게 제일 흥미로운 설정이죠.\""},  {name:"매튜",txt:"\"신원 확인이 필요합니다.\" (공문 준비 중)"},{name:"제이스",txt:"\"저랑 친구 해요! 껌 드릴게요.\"}"],route:"추천 루트: 완전 자유. 어떤 캐릭터와 어떤 방향으로 시작해도 OK. 시작설정에서 원하는 배경을 직접 써주세요."}
 };
 
-/* ══ 선수 팝업 ══ */
-function openP(id){
-  const p=PL[id];if(!p)return;
-  document.getElementById('pc').innerHTML=`
-    <div class="ph"><div><div class="phn">${p.name}</div><div class="php">${p.pos}</div></div><div class="phno">#${p.number}</div><button class="pcls" onclick="closeP()">✕ 닫기</button></div>
-    <div class="pb">
-      <div class="sg">${p.stats.map(s=>`<div class="sc"><div class="sv">${s.v}</div><div class="sk">${s.k}</div></div>`).join('')}</div>
-      <div class="sct">📋 스캔들 이력</div>${p.scandals.map(s=>`<div class="sci">• ${s}</div>`).join('')}
-      <div class="rl"><span>이적 루머 지수</span><span>${p.rumour}%</span></div>
-      <div class="rbg"><div class="rf" style="width:0" data-t="${p.rumour}"></div></div>
-    </div>`;
-  document.getElementById('pmodal').classList.add('on');
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{const b=document.querySelector('.rf');if(b)b.style.width=b.dataset.t+'%'}));
-}
-document.getElementById('pmodal').addEventListener('click',function(e){if(e.target===this)closeP()});
-
-/* ══ 페르소나 팝업 ══ */
-function openPersona(id){
-  const p=PERSONAS[id];if(!p)return;
-  document.querySelectorAll('.persona-btn').forEach(b=>b.classList.remove('sel'));
-  event.currentTarget.classList.add('sel');
-  document.getElementById('percard').innerHTML=`
-    <div class="ph"><div><div class="phn">포지션 선택</div><div class="php">YOUR ROLE · KINGSBRIDGE FC</div></div><button class="pcls" onclick="closePer()">✕ 닫기</button></div>
-    <div class="per-body">
-      <div class="per-hero"><div class="per-icon">${p.icon}</div><div class="per-name">${p.name}</div><div class="per-desc">${p.desc}</div></div>
-      <div class="per-react-title">4인방 첫 반응</div>
-      <div class="per-react">${p.reacts.map(r=>`<div class="per-react-item"><div class="per-react-name">${r.name}</div><div class="per-react-txt">${r.txt}</div></div>`).join('')}</div>
-      <div class="per-route-title">추천 시작 루트</div>
-      <div class="per-route"><p>${p.route}</p></div>
-    </div>`;
-  document.getElementById('permodal').classList.add('on');
-}
-document.getElementById('permodal').addEventListener('click',function(e){if(e.target===this)closePer()});
-
-/* ══ 관계도 팝업 ══ */
-const RELATIONS=[
-  {id:'julian',name:'Vance',rels:[{n:'Rivera',tag:'unk',l:'카페 우연 목격. 동일 주문. 퇴장 2분 차이. 아무것도 모른다고 한다'},{n:'Caldwell',tag:'hos',l:'세리머니 때 눈도 안 마주침. 서로 존재 부정 중'},{n:'Holden',tag:'unk',l:'새벽 클럽 동행 의혹. 유이하게 줄리안에게 접근 가능한 인물'}]},
-  {id:'lucas',name:'Rivera',rels:[{n:'Vance',tag:'unk',l:'동일 주문 카페 목격. 47분간 폰만 봄. 퇴장 2분 차이'},{n:'Caldwell',tag:'hos',l:'라커 봉인 공문 발행인. 단톡방 전쟁 3일째 진행 중'},{n:'Holden',tag:'neu',l:'팀 내 유일한 단톡방 활성 멤버 연대 의혹'}]},
-  {id:'matthew',name:'Caldwell',rels:[{n:'Vance',tag:'hos',l:'기자회견 동시 도착 후 2m 간격 유지. 현재진행형'},{n:'Rivera',tag:'hos',l:'라커 봉인 공문 발행. "결벽증은 철학" 주장 중'},{n:'Holden',tag:'hos',l:'넥타이 껌 접촉 사건 처리 중. 주장으로서 가장 힘든 관계'}]},
-  {id:'jace',name:'Holden',rels:[{n:'Vance',tag:'unk',l:'새벽 클럽 동행 의혹. 유이하게 줄리안 옆에 있을 수 있는 인물'},{n:'Rivera',tag:'neu',l:'단톡방 유이 활성 멤버. 비공식 연대'},{n:'Caldwell',tag:'hos',l:'껌 투척 후 "왜요?"라고 되물은 유일한 선수'}]}
-];
-function openRelation(){
-  document.getElementById('relcard').innerHTML=`
-    <div class="ph"><div><div class="phn">4인방 관계도</div><div class="php">WHO HATES WHO · KINGSBRIDGE FC</div></div><button class="pcls" onclick="closeRel()">✕ 닫기</button></div>
-    <div class="rel-grid">${RELATIONS.map(p=>`
-      <div class="rel-card">
-        <div class="rel-name">${p.name}</div>
-        ${p.rels.map(r=>`<div class="rel-item"><span class="rel-tag ${r.tag}">${r.tag==='hos'?'혐관':r.tag==='unk'?'의혹':'중립'}</span><span>${r.n} — ${r.l}</span></div>`).join('')}
-      </div>`).join('')}
-    </div>
-    <div class="rel-note">※ 혐관 최강: 매튜↔루카스 (라커봉인 현재진행형). 미확인 의혹 최강: 줄리안↔제이스 (새벽클럽 동행설). 줄리안↔루카스는 카페 사건 이후 '의혹'으로 격상. 팀 화합도: 측정 불가.</div>`;
-  document.getElementById('relmodal').classList.add('on');
-}
-document.getElementById('relmodal').addEventListener('click',function(e){if(e.target===this)closeRel()});
-
-/* ══ 궁합 테스트 ══ */
-const QS=[
-  {q:"주말 오후, 나는?",opts:[{t:"VIP 클럽 예약 후 롤렉스 고르는 중",s:"julian"},{t:"아무 카페나 들어가서 분위기 파악 중",s:"lucas"},{t:"집에서 넥타이 다림질하며 스케줄 정리",s:"matthew"},{t:"팀원한테 이유 없이 연락해서 같이 뭔가 하려는 중",s:"jace"}]},
-  {q:"누군가 나를 화나게 했을 때",opts:[{t:"미소 유지하며 눈빛만 차갑게",s:"julian"},{t:"웃는 얼굴로 가장 아픈 말 한마디 날림",s:"lucas"},{t:"공문 한 장 작성 후 규정에 따라 처리",s:"matthew"},{t:"그게 왜 잘못이에요? 진짜 모름",s:"jace"}]},
-  {q:"팀 단톡방에서 나는?",opts:[{t:"읽씹 전문. 필요할 때만 한 줄",s:"julian"},{t:"이모지 연속 폭격 후 갑자기 오프라인",s:"lucas"},{t:"규정 공지만 올림. 답장 강요 안 함",s:"matthew"},{t:"아무 때나 보내고 읽었냐고 바로 확인 연락",s:"jace"}]},
-  {q:"원정 버스 안에서 나는?",opts:[{t:"이어폰 끼고 창문 봄. 말 걸지 마세요",s:"julian"},{t:"옆 사람 은근슬쩍 관찰하며 약점 파악 중",s:"lucas"},{t:"좌석 배치표 재검토 중. 청결 상태 점검",s:"matthew"},{t:"심심해서 내기 제안하다 거절당하면 껌 투척",s:"jace"}]}
-];
-const RS={
-  julian:{compat:"줄리안 타입",desc:"표면적으로 완벽하고 모든 걸 통제하는 것처럼 보이지만 실제로는 아무도 모르는 새벽 루틴이 있습니다. 롤렉스는 장식이 아니라 감정 조절 도구예요. '컨디션 관리 방식이 남들과 다를 뿐'이라는 말이 공감되신다면 이미 줄리안입니다.",tag:"#오만하지만 매력적 #새벽 3시가 황금시간 #롤렉스는 무죄"},
-  lucas:{compat:"루카스 타입",desc:"겉으로는 여유롭고 능글맞지만 실제로는 모든 걸 관찰하고 있어요. 단톡방 이모지 도배 후 갑자기 오프라인 하는 스타일. 라커가 봉인돼도 타투나 추가합니다.",tag:"#능글능글 #관찰력 만렙 #허무주의자 #라커봉인도 쿨하게"},
-  matthew:{compat:"매튜 타입",desc:"규율과 통제를 사랑하며 모든 문제를 공문 한 장으로 해결하려 합니다. 결벽증이 있고 넥타이는 항상 완벽하게 여며져야 해요. '결벽증은 규정이 아니라 철학'이라는 말이 공감된다면 이미 매튜입니다.",tag:"#규율이 곧 철학 #결벽증 #위선자 코스프레 중 #공문작성력 만렙"},
-  jace:{compat:"제이스 타입",desc:"나쁜 의도가 없는데 결과적으로 항상 사건 중심에 있습니다. 껌을 던진 건 그냥 재밌을 것 같아서였고 왜 다들 그렇게 보는지 진짜 이해가 안 돼요.",tag:"#맑눈광 #사고뭉치 #진심으로 모름 #공감능력 ??"}
-};
-let answers={},curQ=0;
-function startTest(){answers={};curQ=0;document.getElementById('testmodal').classList.add('on');renderQ();}
-document.getElementById('testmodal').addEventListener('click',function(e){if(e.target===this)closeTest()});
-function renderQ(){
-  const q=QS[curQ];
-  const pct=Math.round((curQ/QS.length)*100);
-  document.getElementById('testcard').innerHTML=`
-    <div class="ph"><div><div class="phn">캐릭터 궁합 테스트</div><div class="php">나는 누구랑 맞을까? · KINGSBRIDGE FC</div></div><button class="pcls" onclick="closeTest()">✕ 닫기</button></div>
-    <div class="test-wrap">
-      <div class="test-progress">질문 ${curQ+1} / ${QS.length}</div>
-      <div class="test-prog-bar"><div class="test-prog-fill" style="width:${pct}%"></div></div>
-      <div class="test-q"><span>Q${curQ+1}</span>${q.q}</div>
-      <div class="test-opts">${q.opts.map(o=>`<button class="test-opt" onclick="answerQ('${o.s}')">${o.t}</button>`).join('')}</div>
-    </div>`;
-}
-function answerQ(s){
-  answers[s]=(answers[s]||0)+1;
-  curQ++;
-  if(curQ>=QS.length)showResult();else renderQ();
-}
-function showResult(){
-  const top=Object.entries(answers).sort((a,b)=>b[1]-a[1])[0][0];
-  const r=RS[top];const p=PL[top];
-  document.getElementById('testcard').innerHTML=`
-    <div class="ph"><div><div class="phn">결과 발표</div><div class="php">YOUR KINGSBRIDGE TYPE</div></div><button class="pcls" onclick="closeTest()">✕ 닫기</button></div>
-    <div class="test-wrap">
-      <div class="result-char"><div class="result-num">#${p.number}</div><div class="result-name">${p.name}</div><div class="result-pos">${p.pos}</div></div>
-      <div class="result-compat">당신은 ${r.compat}입니다</div>
-      <div class="result-desc">${r.desc}</div>
-      <div class="result-tag">${r.tag}</div>
-      <button class="result-retry" onclick="startTest()">다시 테스트하기 ▶</button>
-    </div>`;
-}
-
-/* ══ 날짜 ══ */
-(function(){const D=['일','월','화','수','목','금','토'],n=new Date();document.getElementById('dout').textContent=`${n.getFullYear()}년 ${n.getMonth()+1}월 ${n.getDate()}일(${D[n.getDay()]}) · London`;})();
-
-/* ══ 투표 ══ */
-(function(){
-  const rows=document.querySelectorAll('.vote-row');
-  let maxV=Math.max(...[...rows].map(r=>+r.dataset.v));
-  rows.forEach(row=>{
-    row.addEventListener('click',function(){
-      if(this.classList.contains('voted'))return;
-      this.classList.add('voted');
-      const newV=+this.dataset.v+1;
-      this.dataset.v=newV;
-      const cnt=this.querySelector('.vcnt');
-      if(cnt)cnt.textContent=newV.toLocale
+</body>
+</html>
