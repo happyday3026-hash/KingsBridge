@@ -12,17 +12,21 @@
 html{-webkit-text-size-adjust:100%}
 body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);padding:8px;min-height:100vh}
 .np{max-width:480px;margin:0 auto;background:var(--paper);position:relative;overflow:hidden;box-shadow:0 12px 60px rgba(0,0,0,.8)}
-.np::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:200;background-image:repeating-linear-gradient(0deg,transparent,transparent 24px,rgba(0,0,0,.03) 24px,rgba(0,0,0,.03) 25px)}
+.np::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:100;background-image:repeating-linear-gradient(0deg,transparent,transparent 24px,rgba(0,0,0,.03) 24px,rgba(0,0,0,.03) 25px)}
+/* 날짜바 */
 .top-bar{background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;padding:3px 12px;font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
 .pip{background:var(--red);color:#fff;padding:1px 7px;font-size:8px;letter-spacing:.15em;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+/* 마스트헤드 */
 .masthead{border-bottom:4px double var(--ink);padding:14px 14px 8px;text-align:center}
 .masthead::after{content:'★ LONDON · PREMIER LEAGUE · WIN OR LUST ★';display:block;font-family:'Oswald',sans-serif;font-size:8px;letter-spacing:.2em;color:var(--gray);margin-top:4px;text-transform:uppercase}
 .pname{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,16vw,76px);line-height:.88;letter-spacing:.02em;color:var(--ink);text-shadow:3px 3px 0 rgba(0,0,0,.1)}
 .pname .daily{color:var(--red);display:block;font-size:clamp(27px,8.5vw,39px);letter-spacing:.2em;margin-top:-4px}
 .msub{display:flex;justify-content:space-between;font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.1em;border-top:1px solid var(--ink);margin-top:6px;padding-top:4px;color:var(--gray);text-transform:uppercase}
 .motto{font-family:'Noto Serif KR',serif;font-style:italic;font-size:10px;color:var(--gold)}
+/* 섹션배너 */
 .sb{background:var(--ink);color:var(--paper);font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;padding:3px 12px;display:flex;justify-content:space-between}
+/* 본문 */
 .body{padding:0 12px 14px}
 .kicker{font-family:'Oswald',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px}
 .kicker.g{color:var(--gold)}
@@ -37,16 +41,16 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
 .rt{border:none;border-top:3px solid var(--ink);margin:8px 0}
 .rn{border:none;border-top:1px solid rgba(0,0,0,.2);margin:6px 0}
 .rd{border:none;border-top:4px double var(--ink);margin:10px 0}
-
-/* 실제 이미지 */
+/* 이미지 */
 .img-wrap{position:relative;overflow:hidden;margin:7px 0 3px;background:#1a1a1a}
 .img-wrap.wide{aspect-ratio:16/7}
 .img-wrap.sq{aspect-ratio:4/3}
 .img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
 .img-wrap .cap{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.78);color:rgba(255,255,255,.88);font-size:9px;padding:4px 8px;font-family:'Noto Serif KR',serif;font-style:italic}
-
+/* 풀쿼트 */
 .pq{border-left:4px solid var(--red);padding:5px 10px;margin:8px 0;font-family:'Noto Serif KR',serif;font-size:12px;font-weight:700;font-style:italic;line-height:1.55;color:var(--ink);background:rgba(200,16,46,.04)}
 .pq cite{display:block;font-size:9px;font-style:normal;font-family:'Oswald',sans-serif;letter-spacing:.1em;color:var(--gray);margin-top:3px}
+/* 스코어 */
 .score{background:var(--ink);color:var(--paper);padding:8px 10px;margin:6px 0;font-family:'Bebas Neue',sans-serif;text-align:center}
 .score-row{display:flex;justify-content:center;align-items:center;gap:8px}
 .score-team{font-size:11px;letter-spacing:.12em;flex:1;line-height:1.2}
@@ -54,6 +58,7 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
 .score-team.a{text-align:left}
 .score-box{background:var(--red);padding:3px 12px;font-size:27px;min-width:62px;text-align:center;line-height:1}
 .score-inf{font-size:8.5px;letter-spacing:.14em;opacity:.6;margin-top:3px}
+/* 테이블 */
 .tbl{width:100%;border-collapse:collapse;margin:5px 0}
 .tbl th{font-family:'Oswald',sans-serif;font-size:8px;letter-spacing:.15em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:3px 6px;text-align:left}
 .tbl td{font-family:'Noto Sans KR',sans-serif;font-size:10px;padding:3px 6px;border-bottom:1px solid rgba(0,0,0,.1)}
@@ -61,83 +66,22 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
 .tbl td.n{font-family:'Oswald',sans-serif;font-weight:600;text-align:right;color:var(--red)}
 .tbl td.hh{font-weight:700}
 /* 투표 */
-.vote-row{cursor:pointer;transition:background .15s}
-.vote-row:hover td{background:rgba(200,16,46,.06)!important}
-.vote-row.voted td{background:rgba(200,16,46,.1)!important}
+.vote-row{cursor:pointer;transition:background .15s;-webkit-tap-highlight-color:transparent}
+.vote-row:active td,.vote-row.voted td{background:rgba(200,16,46,.1)!important}
 .vbar-wrap{display:flex;align-items:center;gap:5px}
 .vbar{height:5px;background:var(--red);border-radius:2px;transition:width .4s ease;min-width:2px}
-.vcnt{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;color:var(--red);min-width:32px;text-align:right}
+.vcnt{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;color:var(--red);min-width:36px;text-align:right}
+/* 박스 */
 .bx{border:2px solid var(--ink);padding:9px 10px;margin:8px 0;background:var(--paper-dark);position:relative}
 .bx::before{content:attr(data-l);position:absolute;top:-7px;left:8px;background:var(--ink);color:var(--paper);font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:.1em;padding:0 5px}
-.bx.red{background:var(--red);border-color:var(--red)}
-.sbx{border:1px solid rgba(0,0,0,.18);padding:7px 9px;margin:6px 0;background:var(--paper-dark)}
 .adbx{border:2px solid var(--ink);padding:9px;text-align:center;margin:8px 0;background:var(--paper-dark)}
 .adbx .at{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.1em;line-height:1.1}
 .adbx .as{font-family:'Noto Serif KR',serif;font-size:9.5px;font-style:italic;color:var(--gray);margin-top:2px}
 .adbx .an{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;color:var(--red);margin-top:3px}
+/* 선수 태그 */
 .pt{color:var(--red);font-weight:700;cursor:pointer;text-decoration:underline dotted 1px;text-underline-offset:2px;-webkit-tap-highlight-color:transparent}
 .pt:active{opacity:.6}
-/* 팝업 */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:9000;align-items:flex-end;justify-content:center}
-.modal.on{display:flex}
-.pcard{background:var(--paper);width:100%;max-width:480px;border-top:3px solid var(--ink);position:relative;animation:sup .28s cubic-bezier(.22,.61,.36,1);max-height:88vh;overflow-y:auto}
-@keyframes sup{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.ph{background:var(--ink);color:var(--paper);padding:13px 14px 10px;display:flex;justify-content:space-between;align-items:flex-start;position:sticky;top:0;z-index:2}
-.phn{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em;line-height:1}
-.php{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.2em;opacity:.6;margin-top:2px}
-.phno{font-family:'Bebas Neue',sans-serif;font-size:46px;line-height:1;color:var(--red)}
-.pcls{position:absolute;top:9px;right:10px;background:none;border:none;color:var(--paper);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.05em;cursor:pointer;opacity:.6;padding:4px 8px;-webkit-tap-highlight-color:transparent}
-.pcls:active{opacity:1}
-.pb{padding:11px 14px 20px}
-.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:9px}
-.sc{text-align:center;background:var(--paper-dark);padding:5px 3px}
-.sv{font-family:'Bebas Neue',sans-serif;font-size:21px;color:var(--ink);line-height:1}
-.sk{font-family:'Oswald',sans-serif;font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:1px}
-.sct{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.1em;border-bottom:1px solid var(--ink);padding-bottom:2px;margin-bottom:4px}
-.sci{font-family:'Noto Serif KR',serif;font-size:10px;line-height:1.55;color:#222;padding:2px 0;border-bottom:1px dotted rgba(0,0,0,.14)}
-.sci:last-child{border-bottom:none}
-.rl{font-family:'Oswald',sans-serif;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin:8px 0 3px;display:flex;justify-content:space-between}
-.rbg{height:8px;background:rgba(0,0,0,.1);overflow:hidden}
-.rf{height:100%;background:var(--red);transition:width .65s ease-out}
-/* 관계도·테스트 버튼 */
-.feat-btn{width:100%;background:var(--ink);color:var(--paper);border:none;padding:12px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;-webkit-tap-highlight-color:transparent;transition:background .15s}
-.feat-btn:active{background:#2a2a2a}
-.feat-icon{font-size:22px}
-.feat-title{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.08em;color:var(--paper)}
-.feat-sub{font-family:'Noto Serif KR',serif;font-size:9.5px;color:rgba(244,239,228,.6);font-style:italic}
-/* 관계도 팝업 */
-.rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px 6px}
-.rel-card{background:var(--paper-dark);border:1px solid rgba(0,0,0,.12);padding:9px 10px;position:relative}
-.rel-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.04em;color:var(--ink);margin-bottom:5px}
-.rel-item{font-family:'Noto Serif KR',serif;font-size:10px;line-height:1.55;color:#222;padding:2px 0;border-bottom:1px dotted rgba(0,0,0,.12);display:flex;gap:5px;align-items:baseline}
-.rel-item:last-child{border-bottom:none}
-.rel-tag{font-family:'Oswald',sans-serif;font-size:8px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;padding:1px 4px;border-radius:2px}
-.rel-tag.hos{background:#c8102e;color:#fff}
-.rel-tag.neu{background:#555;color:#fff}
-.rel-tag.unk{background:#9a7010;color:#fff}
-.rel-summary{padding:8px 14px 14px}
-.rel-summary p{font-family:'Noto Serif KR',serif;font-size:11px;line-height:1.7;color:#1c1c1c}
-/* 테스트 */
-.test-wrap{padding:12px 14px 20px}
-.test-q{font-family:'Noto Serif KR',serif;font-size:13px;font-weight:700;line-height:1.5;color:var(--ink);margin-bottom:10px}
-.test-q span{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:4px}
-.test-opts{display:flex;flex-direction:column;gap:6px}
-.test-opt{background:var(--paper-dark);border:1px solid rgba(0,0,0,.15);padding:9px 12px;font-family:'Noto Serif KR',serif;font-size:11.5px;line-height:1.5;color:var(--ink);cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;transition:all .15s}
-.test-opt:active,.test-opt.sel{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.test-progress{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.1em;color:var(--gray);margin-bottom:10px;text-transform:uppercase}
-.test-prog-bar{height:3px;background:rgba(0,0,0,.1);margin-bottom:14px;overflow:hidden}
-.test-prog-fill{height:100%;background:var(--red);transition:width .3s ease}
-/* 결과 */
-.result-wrap{padding:14px}
-.result-char{background:var(--ink);color:var(--paper);padding:14px;text-align:center;margin-bottom:10px}
-.result-num{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:var(--red)}
-.result-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;line-height:1.1}
-.result-pos{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.2em;opacity:.6;margin-top:2px}
-.result-compat{font-family:'Noto Serif KR',serif;font-size:12.5px;font-weight:700;color:var(--ink);margin:8px 0 4px}
-.result-desc{font-family:'Noto Serif KR',serif;font-size:11.5px;line-height:1.7;color:#1c1c1c}
-.result-retry{width:100%;background:var(--red);color:#fff;border:none;padding:10px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.1em;cursor:pointer;margin-top:12px;-webkit-tap-highlight-color:transparent}
-.result-retry:active{background:#a00020}
-.footer{background:var(--ink);color:rgba(244,239,228,.55);font-family:'Oswald',sans-serif;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:3px}
+/* 댓글 */
 .cmts{background:var(--paper-dark);border-top:2px solid var(--ink);padding:8px 10px;margin:8px 0}
 .cmts-title{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.1em;border-bottom:1px solid var(--ink);padding-bottom:3px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:baseline}
 .cmts-title small{font-family:'Oswald',sans-serif;font-size:8.5px;color:var(--gray);letter-spacing:.1em}
@@ -148,11 +92,99 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
 .cmt-time{font-family:'Oswald',sans-serif;font-size:8px;color:var(--gray)}
 .cmt-txt{font-family:'Noto Serif KR',serif;font-size:11px;line-height:1.6;color:#1c1c1c}
 .cmt-acts{display:flex;gap:6px;margin-top:4px}
-.vbtn{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.05em;border:1px solid rgba(0,0,0,.18);background:transparent;cursor:pointer;padding:2px 7px;-webkit-tap-highlight-color:transparent}
-.vbtn.u.vd{background:var(--ink);color:#fff;border-color:var(--ink)}
-.vbtn.d.vd{background:#555;color:#fff;border-color:#555}
+.vbtn{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.05em;border:1px solid rgba(0,0,0,.18);background:transparent;cursor:pointer;padding:2px 7px;-webkit-tap-highlight-color:transparent;transition:all .15s}
+.vbtn:active{transform:scale(.95)}
+.vbtn.vd.u{background:var(--ink);color:#fff;border-color:var(--ink)}
+.vbtn.vd.d{background:#555;color:#fff;border-color:#555}
+/* 페르소나 섹션 */
+.persona-section{background:var(--ink);padding:12px 14px;border-bottom:3px solid var(--red)}
+.persona-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em;color:var(--paper);margin-bottom:3px}
+.persona-sub{font-family:'Noto Serif KR',serif;font-size:10px;font-style:italic;color:rgba(244,239,228,.6);margin-bottom:10px}
+.persona-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.persona-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);padding:9px 10px;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;transition:all .15s}
+.persona-btn:active,.persona-btn.sel{background:var(--red);border-color:var(--red)}
+.persona-btn .p-icon{font-size:18px;display:block;margin-bottom:3px}
+.persona-btn .p-name{font-family:'Noto Serif KR',serif;font-size:11px;font-weight:700;color:var(--paper);line-height:1.3;display:block}
+.persona-btn .p-tag{font-family:'Oswald',sans-serif;font-size:8px;letter-spacing:.1em;color:rgba(244,239,228,.5);display:block;margin-top:2px;text-transform:uppercase}
+/* 관계도·테스트 버튼 */
+.feat-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 10px}
+.feat-btn{width:100%;background:var(--ink);color:var(--paper);border:none;padding:12px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;-webkit-tap-highlight-color:transparent;transition:background .15s}
+.feat-btn:active{background:#333}
+.feat-icon{font-size:22px}
+.feat-title{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.08em;color:var(--paper)}
+.feat-sub{font-family:'Noto Serif KR',serif;font-size:9.5px;color:rgba(244,239,228,.6);font-style:italic}
+/* 팝업 공통 */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:9000;align-items:flex-end;justify-content:center}
+.modal.on{display:flex}
+.pcard{background:var(--paper);width:100%;max-width:480px;border-top:3px solid var(--ink);position:relative;animation:sup .28s cubic-bezier(.22,.61,.36,1);max-height:90vh;overflow-y:auto}
+@keyframes sup{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.ph{background:var(--ink);color:var(--paper);padding:13px 14px 10px;display:flex;justify-content:space-between;align-items:flex-start;position:sticky;top:0;z-index:2}
+.phn{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em;line-height:1}
+.php{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.2em;opacity:.6;margin-top:2px}
+.phno{font-family:'Bebas Neue',sans-serif;font-size:46px;line-height:1;color:var(--red)}
+.pcls{position:absolute;top:9px;right:10px;background:none;border:none;color:var(--paper);font-family:'Bebas Neue',sans-serif;font-size:15px;cursor:pointer;opacity:.6;padding:4px 8px;-webkit-tap-highlight-color:transparent}
+.pcls:active{opacity:1}
+.pb{padding:11px 14px 20px}
+/* 선수 프로필 팝업 */
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:9px}
+.sc{text-align:center;background:var(--paper-dark);padding:5px 3px}
+.sv{font-family:'Bebas Neue',sans-serif;font-size:21px;color:var(--ink);line-height:1}
+.sk{font-family:'Oswald',sans-serif;font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:1px}
+.sct{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.1em;border-bottom:1px solid var(--ink);padding-bottom:2px;margin-bottom:4px}
+.sci{font-family:'Noto Serif KR',serif;font-size:10px;line-height:1.55;color:#222;padding:2px 0;border-bottom:1px dotted rgba(0,0,0,.14)}
+.sci:last-child{border-bottom:none}
+.rl{font-family:'Oswald',sans-serif;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin:8px 0 3px;display:flex;justify-content:space-between}
+.rbg{height:8px;background:rgba(0,0,0,.1);overflow:hidden}
+.rf{height:100%;background:var(--red);transition:width .65s ease-out}
+/* 페르소나 팝업 */
+.per-body{padding:14px}
+.per-hero{background:var(--ink);color:var(--paper);padding:14px;text-align:center;margin-bottom:12px}
+.per-icon{font-size:36px;margin-bottom:6px}
+.per-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;line-height:1.1}
+.per-desc{font-family:'Noto Serif KR',serif;font-size:11px;color:rgba(244,239,228,.75);margin-top:6px;line-height:1.6;font-style:italic}
+.per-react-title{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.1em;border-bottom:2px solid var(--ink);padding-bottom:3px;margin-bottom:8px}
+.per-react{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.per-react-item{background:var(--paper-dark);border:1px solid rgba(0,0,0,.12);padding:8px 10px}
+.per-react-name{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.05em;color:var(--red);margin-bottom:2px}
+.per-react-txt{font-family:'Noto Serif KR',serif;font-size:11px;line-height:1.55;color:#1c1c1c;font-style:italic}
+.per-route-title{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.1em;border-bottom:2px solid var(--ink);padding-bottom:3px;margin-bottom:8px}
+.per-route{background:rgba(200,16,46,.06);border-left:4px solid var(--red);padding:8px 10px}
+.per-route p{font-family:'Noto Serif KR',serif;font-size:11px;line-height:1.65;color:#1c1c1c}
+/* 관계도 팝업 */
+.rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px 6px}
+.rel-card{background:var(--paper-dark);border:1px solid rgba(0,0,0,.12);padding:9px 10px}
+.rel-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.04em;color:var(--ink);margin-bottom:5px}
+.rel-item{font-family:'Noto Serif KR',serif;font-size:9.5px;line-height:1.5;color:#222;padding:2px 0;border-bottom:1px dotted rgba(0,0,0,.12);display:flex;gap:4px;align-items:baseline}
+.rel-item:last-child{border-bottom:none}
+.rel-tag{font-family:'Oswald',sans-serif;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding:1px 4px;flex-shrink:0}
+.rel-tag.hos{background:var(--red);color:#fff}
+.rel-tag.unk{background:var(--gold);color:#fff}
+.rel-tag.neu{background:#555;color:#fff}
+.rel-note{padding:8px 14px 14px;font-family:'Noto Serif KR',serif;font-size:10.5px;line-height:1.7;color:#333}
+/* 궁합 테스트 */
+.test-wrap{padding:12px 14px 20px}
+.test-progress{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.1em;color:var(--gray);margin-bottom:6px;text-transform:uppercase}
+.test-prog-bar{height:3px;background:rgba(0,0,0,.1);margin-bottom:14px;overflow:hidden}
+.test-prog-fill{height:100%;background:var(--red);transition:width .3s ease}
+.test-q{font-family:'Noto Serif KR',serif;font-size:13px;font-weight:700;line-height:1.5;color:var(--ink);margin-bottom:10px}
+.test-q span{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:4px}
+.test-opts{display:flex;flex-direction:column;gap:6px}
+.test-opt{background:var(--paper-dark);border:1px solid rgba(0,0,0,.15);padding:9px 12px;font-family:'Noto Serif KR',serif;font-size:11.5px;line-height:1.5;color:var(--ink);cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;transition:all .15s;width:100%}
+.test-opt:active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+/* 결과 */
+.result-char{background:var(--ink);color:var(--paper);padding:14px;text-align:center;margin-bottom:10px}
+.result-num{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:var(--red)}
+.result-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;line-height:1.1}
+.result-pos{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.2em;opacity:.6;margin-top:2px}
+.result-compat{font-family:'Noto Serif KR',serif;font-size:13px;font-weight:700;color:var(--ink);margin:8px 0 4px}
+.result-desc{font-family:'Noto Serif KR',serif;font-size:11.5px;line-height:1.7;color:#1c1c1c}
+.result-tag{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.1em;color:var(--gray);margin-top:8px}
+.result-retry{width:100%;background:var(--red);color:#fff;border:none;padding:10px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.1em;cursor:pointer;margin-top:12px;-webkit-tap-highlight-color:transparent}
+.result-retry:active{background:#a00020}
+/* 푸터 */
 .footer{background:var(--ink);color:rgba(244,239,228,.55);font-family:'Oswald',sans-serif;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:3px}
 .cred{color:var(--red)!important;font-weight:600}
+/* 속보 티커 */
 .ticker{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;padding:5px 0;border-top:3px solid var(--red);position:relative}
 .tlbl{background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.12em;padding:0 10px;position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;z-index:10;white-space:nowrap}
 .ttrk{display:inline-block;animation:tk 38s linear infinite;font-family:'Oswald',sans-serif;font-size:10.5px;letter-spacing:.07em;padding-left:90px}
@@ -169,16 +201,56 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
 </head>
 <body>
 
+<!-- 팝업 모달들 -->
 <div class="modal" id="pmodal"><div class="pcard" id="pc"></div></div>
 <div class="modal" id="relmodal"><div class="pcard" id="relcard"></div></div>
 <div class="modal" id="testmodal"><div class="pcard" id="testcard"></div></div>
+<div class="modal" id="permodal"><div class="pcard" id="percard"></div></div>
 
 <div class="np">
-  <div class="top-bar"><span id="dout">—</span><span class="pip">BREAKING</span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d2b9b0b6b3bbbeab92b9bbbcb5a1b0a0bbb6b5b7fcb4b1">[email&#160;protected]</a></span></div>
+  <div class="top-bar"><span id="dout">—</span><span class="pip">BREAKING</span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="345f5650555d584d745f5d5a534756465d5053511a5257">[email&#160;protected]</a></span></div>
 
   <div class="masthead">
     <div class="pname">킹스브릿지<span class="daily">DAILY</span></div>
     <div class="msub"><span>Est. 2024 · London</span><span class="motto">진실은 그라운드 위에 있다</span><span>£1.50</span></div>
+  </div>
+
+  <!-- ★ 페르소나 선택 섹션 ★ -->
+  <div class="persona-section">
+    <div class="persona-title">당신의 포지션을 선택하세요</div>
+    <div class="persona-sub">킹스브릿지 FC에 어떤 이유로 발을 들였나요?</div>
+    <div class="persona-grid">
+      <button class="persona-btn" onclick="openPersona('vip')">
+        <span class="p-icon">💰</span>
+        <span class="p-name">VIP 스폰서 자제</span>
+        <span class="p-tag">건드리면 안 되는 존재</span>
+      </button>
+      <button class="persona-btn" onclick="openPersona('analyst')">
+        <span class="p-icon">📊</span>
+        <span class="p-name">구단 전속 분석관</span>
+        <span class="p-tag">업무가 오늘 밤 바뀌었다</span>
+      </button>
+      <button class="persona-btn" onclick="openPersona('reporter')">
+        <span class="p-icon">🎙️</span>
+        <span class="p-name">스포츠 전문 기자</span>
+        <span class="p-tag">내가 기사가 됐습니다</span>
+      </button>
+      <button class="persona-btn" onclick="openPersona('medic')">
+        <span class="p-icon">💊</span>
+        <span class="p-name">구단 의료 스태프</span>
+        <span class="p-tag">컨디션 체크하러 왔습니다</span>
+      </button>
+      <button class="persona-btn" onclick="openPersona('rival')">
+        <span class="p-icon">⚽</span>
+        <span class="p-name">라이벌 구단 선수</span>
+        <span class="p-tag">적팀인데 이렇게 됐습니다</span>
+      </button>
+      <button class="persona-btn" onclick="openPersona('free')">
+        <span class="p-icon">✏️</span>
+        <span class="p-name">자유 설정</span>
+        <span class="p-tag">직접 설정하기</span>
+      </button>
+    </div>
   </div>
 
   <div class="sb"><span>오늘의 킹스브릿지</span><span>SCANDAL · DRAMA · GOSSIP</span></div>
@@ -186,28 +258,25 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
   <div class="body">
     <hr class="rt" style="margin-top:10px">
 
-    <!-- 메인 헤드라인 — 줄리안 클럽 -->
+    <!-- 기사 1: 줄리안 클럽 -->
     <span class="kicker">단독 ★ 목격자 제보</span>
-    <h1 class="hxl"><span class="pt" onclick="openP('julian')">줄리안 밴스</span>, 새벽 3시 클럽에서<br><em>"팀 미팅 있었는데요?"</em></h1>
-    <p class="deck">훈련 전날 밤 메이페어 'Obsidian' 포착. 동행인 미확인. <span class="pt" onclick="openP('coach')">홀로웨이</span> 감독: "컨디션 관리 중."</p>
+    <h1 class="hxl"><span class="pt" onclick="openP('julian')">줄리안</span>, 새벽 3시 클럽에서<br><em>"팀 미팅 있었는데요?"</em></h1>
+    <p class="deck">킹스브릿지 에이스 스트라이커 줄리안이 훈련 전날 밤 메이페어 'Obsidian' 포착. 동행인 미확인. <span class="pt" onclick="openP('coach')">홀로웨이</span> 감독: "컨디션 관리 중."</p>
     <div class="byl">by Sophie Hartley · 메이페어 현지</div>
-
     <div class="img-wrap wide">
-      <img src="https://raw.githubusercontent.com/happyday3026-hash/KingsBridge/main/1774277071395.jpg" alt="줄리안 밴스 클럽 포착">
-      <span class="cap">▲ Obsidian 앞 포착. 드레스코드: 빈티지 생 로랑. 컨디션 관리복치고는 비싸다. Photo=본지</span>
+      <img src="https://raw.githubusercontent.com/happyday3026-hash/KingsBridge/main/1774277071395.jpg" alt="줄리안 클럽 포착">
+      <span class="cap">▲ Obsidian 앞 포착. 드레스코드: 빈티지 생 로랑. 컨디션 관리복치고는 비싸다</span>
     </div>
-
     <div class="bt">
-      <p><span class="pt" onclick="openP('julian')">밴스</span>는 새벽 2시 47분 입장, 롤렉스 만지작거리며 VIP석 통째 전세. 동행인 실루엣이 <span class="pt" onclick="openP('jace')">홀든</span>과 유사하다는 제보 추가 입수.</p>
+      <p><span class="pt" onclick="openP('julian')">줄리안</span>는 새벽 2시 47분 입장, 롤렉스 만지작거리며 VIP석 통째 전세. 동행인 실루엣이 <span class="pt" onclick="openP('jace')">제이스</span>과 유사하다는 제보 추가 입수.</p>
       <p>다음 날 훈련 정각 출석, 팀 내 최상 컨디션. 문제는 그게 더 문제라는 것.</p>
     </div>
-    <div class="pq">"컨디션 관리 방식이 남들과 다를 뿐입니다."<cite>— <span class="pt" onclick="openP('julian')">Julian Vance</span>, 완벽한 무표정으로. 롤렉스는 계속 돌아가는 중</cite></div>
-
+    <div class="pq">"컨디션 관리 방식이 남들과 다를 뿐입니다."<cite>— <span class="pt" onclick="openP('julian')">줄리안</span>, 완벽한 무표정으로. 롤렉스는 계속 돌아가는 중</cite></div>
     <div class="cmts">
       <div class="cmts-title">독자 댓글 <small>5개</small></div>
       <div class="cmt"><div class="cmt-meta"><span class="cmt-nick sp">@현생오프</span><span class="cmt-time">3분 전</span></div><div class="cmt-txt">새벽 3시 클럽에서 다음날 컨디션 최고??? 그거 인간이 아님 ㅋㅋㅋㅋ</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>847</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>12</span></button></div></div>
       <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">KingsRoad_Kim</span><span class="cmt-time">7분 전</span></div><div class="cmt-txt">롤렉스 만지작거리는 거 직접 봤다는 목격자 제보 받습니다 DM 주세요</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>632</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>8</span></button></div></div>
-      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">LondonDerby_박</span><span class="cmt-time">11분 전</span></div><div class="cmt-txt">동행인 실루엣이 홀든이라고요????? 저 둘이 같이 다닌다고???? 기자님 더 파주세요</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>1203</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>3</span></button></div></div>
+      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">LondonDerby_박</span><span class="cmt-time">11분 전</span></div><div class="cmt-txt">동행인 실루엣이 제이스라고요????? 저 둘이 같이 다닌다고???? 기자님 더 파주세요</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>1203</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>3</span></button></div></div>
       <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">Obsidian_목격자</span><span class="cmt-time">15분 전</span></div><div class="cmt-txt">생 로랑 재킷 가격 찾아봤는데 컨디션 관리비로 350만원 쓰는 거 맞죠?</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>541</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>77</span></button></div></div>
       <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">HollowayOut_FC</span><span class="cmt-time">22분 전</span></div><div class="cmt-txt">감독이 컨디션 관리라고 했으면 그게 맞는 거 아닌가요 ^^ 저 비꼬는 거 맞습니다</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>398</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>201</span></button></div></div>
     </div>
@@ -222,54 +291,48 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
         <span class="score-box">3–0</span>
         <span class="score-team a">West Brompton</span>
       </div>
-      <div class="score-inf"><span class="pt" style="color:rgba(220,120,120,.9)" onclick="openP('julian')">Vance</span> 12' 55' · <span class="pt" style="color:rgba(220,120,120,.9)" onclick="openP('jace')">Holden</span> 78'</div>
+      <div class="score-inf"><span class="pt" style="color:rgba(220,120,120,.9)" onclick="openP('julian')">줄리안</span> 12' 55' · <span class="pt" style="color:rgba(220,120,120,.9)" onclick="openP('jace')">제이스</span> 78'</div>
     </div>
 
     <hr class="rn">
 
-    <!-- 라커 봉인 — 라커 사진 -->
+    <!-- 기사 2: 라커 봉인 -->
     <span class="kicker">혐관 포착 ★ 이주의 사건</span>
-    <h2 class="hlg"><span class="pt" onclick="openP('matthew')">콜드웰</span> 주장, <span class="pt" onclick="openP('lucas')">루카스</span> 라커 3일째 봉인 중</h2>
+    <h2 class="hlg"><span class="pt" onclick="openP('matthew')">매튜</span> 주장, <span class="pt" onclick="openP('lucas')">루카스</span> 라커 3일째 봉인 중</h2>
     <div class="byl">by James Whitfield · Kingsbridge 훈련장</div>
-
     <div class="img-wrap wide">
-      <img src="https://raw.githubusercontent.com/happyday3026-hash/KingsBridge/main/from-PixAI-1992831360119109912.png" alt="라커룸 봉인 현장">
-      <span class="cap">▲ '위생 점검' 공문이 부착된 라커. 손수건 냄새는 확인 불가. Photo=본지 내부 입수</span>
+      <img src="https://raw.githubusercontent.com/happyday3026-hash/KingsBridge/main/매튜기사.jpg" alt="매튜">
+      <span class="cap">▲ 공문 발행 직후 포착된 매튜 주장. 표정은 평소와 동일하다. 그게 더 무섭다. Photo=본지</span>
     </div>
-
     <div class="bt">
-      <p><span class="pt" onclick="openP('lucas')">리베라</span> 라커에 <span class="pt" onclick="openP('matthew')">콜드웰</span> 명의 '위생 점검' 공문 부착. 리베라: "규정 위반 없었다." 주장: "결벽증은 규정이 아니라 철학." 대화 종료.</p>
-      <p>리베라는 단톡방에 불만 이모지 도배. 주장은 '규정준수' 스티커로 응수. 전 구단원 읽음.</p>
+      <p>킹스브릿지 수비 주장 매튜가 팀메이트 루카스의 개인 라커에 공식 공문을 붙여 출입을 봉인했다. 이유: "위생 기준 미달." 루카스: "규정 위반 없었다." 매튜: "기준이 곧 규정이다." 대화 종료.</p>
+      <p>루카스는 팀 단톡방에 불만 이모지를 30개 이상 올렸다. 매튜는 해당 게시물에 '규정준수 완료' 스티커를 붙여 답했다. 전 구단원이 읽었다. 아무도 편을 들지 않았다.</p>
     </div>
-    <div class="pq">"내 라커에 손수건 냄새 나는 경위서 끼워넣은 거 봤어? 저 미친 새끼."<cite>— <span class="pt" onclick="openP('lucas')">Lucas Rivera</span>, 팀 단톡방. 전 구단원 읽음 처리됨</cite></div>
-
+    <div class="pq">"내 라커에 무슨 짓을 한 거야. 저 미친 새끼."<cite>— <span class="pt" onclick="openP('lucas')">루카스</span>, 팀 단톡방. 전 구단원 읽음 처리됨</cite></div>
     <div class="cmts">
       <div class="cmts-title">독자 댓글 <small>5개</small></div>
-      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">규정준수_팬클럽</span><span class="cmt-time">1분 전</span></div><div class="cmt-txt">콜드웰 주장 편입니다 라커룸 위생은 중요합니다 이상</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>203</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>891</span></button></div></div>
-      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">Rivera_Tattoo_Fan</span><span class="cmt-time">4분 전</span></div><div class="cmt-txt">단톡방 이모지 도배하다가 '규정준수' 스티커로 응수당한 루카스 리베라 상상하니까 너무 웃김 ㅋㅋㅋ</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>2108</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>4</span></button></div></div>
+      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">규정준수_팬클럽</span><span class="cmt-time">1분 전</span></div><div class="cmt-txt">매튜 주장 편입니다 라커룸 위생은 중요합니다 이상</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>203</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>891</span></button></div></div>
+      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">Rivera_Tattoo_Fan</span><span class="cmt-time">4분 전</span></div><div class="cmt-txt">단톡방 이모지 도배하다가 '규정준수' 스티커로 응수당한 루카스 상상하니까 너무 웃김 ㅋㅋㅋ</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>2108</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>4</span></button></div></div>
       <div class="cmt"><div class="cmt-meta"><span class="cmt-nick sp">@현생오프</span><span class="cmt-time">9분 전</span></div><div class="cmt-txt">저 경위서 원본 NFT로 팔면 삽니다 진짜로</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>1847</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>22</span></button></div></div>
       <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">Caldwell_결벽증연구소</span><span class="cmt-time">14분 전</span></div><div class="cmt-txt">결벽증은 규정이 아니라 철학... 이 사람 명언 모음집 누가 만들어줘요</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>763</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>11</span></button></div></div>
-      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">KB_내부제보</span><span class="cmt-time">31분 전</span></div><div class="cmt-txt">저 공문 손수건으로 집어서 붙였다고 합니다 (제보자 익명 요청)</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>3291</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>1</span></button></div></div>
+      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">KB_내부제보</span><span class="cmt-time">31분 전</span></div><div class="cmt-txt">아무도 편 안 들었다는 거 팩트입니다. 침묵이 답이에요 (제보자 익명 요청)</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>3291</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>1</span></button></div></div>
     </div>
 
     <hr class="rn">
 
-    <!-- 카페 목격 — 카페 사진 -->
+    <!-- 기사 3: 카페 목격 -->
     <span class="kicker g">목격담 독점</span>
-    <h2 class="hlg">사이 나쁘기로 유명한 <span class="pt" onclick="openP('julian')">밴스</span>↔<span class="pt" onclick="openP('lucas')">리베라</span>,<br>같은 카페서 "우연히" 47분 — 각자 다른 테이블</h2>
+    <h2 class="hlg">사이 나쁘기로 유명한 <span class="pt" onclick="openP('julian')">줄리안</span>↔<span class="pt" onclick="openP('lucas')">루카스</span>,<br>같은 카페서 "우연히" 47분 — 각자 다른 테이블</h2>
     <div class="byl">by Oliver Crane · 첼시 킹스로드</div>
-
     <div class="img-wrap sq">
       <img src="https://raw.githubusercontent.com/happyday3026-hash/KingsBridge/main/from-PixAI-1992830984226763122.png" alt="카페 목격 현장">
       <span class="cap">▲ 테이블 거리: 4m. 주문: 아메리카노 설탕 없이. 동일. 사진=독자 제보</span>
     </div>
-
     <div class="bt">
       <p>평소 라커룸에서도 눈을 마주치지 않는 두 선수가 같은 카페에서 목격됐다. 테이블 거리는 4m. 주문은 아메리카노, 설탕 없이. 동일.</p>
       <p>퇴장 시각은 2분 차이였다. "같이 나간 게 아니라고 확신할 수 없었다." — 목격자 최종 증언.</p>
     </div>
     <div class="pq">"거기 있었던 건 맞는데, 그 사람은 못 봤습니다."<cite>— Vance. Rivera도 정확히 같은 말. 본지는 믿지 않는다</cite></div>
-
     <div class="cmts">
       <div class="cmts-title">독자 댓글 <small>5개</small></div>
       <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">KingsRoad_목격자2</span><span class="cmt-time">2분 전</span></div><div class="cmt-txt">아메리카노 설탕없이 동일주문... 둘이 취향도 같은 거 알면서 모른척하는 거 맞죠?</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>1203</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>7</span></button></div></div>
@@ -281,28 +344,32 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
 
     <hr class="rn">
 
-    <!-- 홀든 껌 -->
-    <span class="kicker">충격 제보</span>
-    <h2 class="hmd"><span class="pt" onclick="openP('jace')">제이스 홀든</span>, 원정 버스서 팀원 4명에게 껌 동시 투척</h2>
-    <div class="byl">by Charlotte Vane</div>
-    <div class="bt"><p>"심심한데 내기하자" 제안 거절당하자 4명에게 동시 투척. 해맑게 웃으며. <span class="pt" onclick="openP('matthew')">콜드웰</span> 주장이 말리러 왔을 때 이미 세 개 추가 투척 후.</p></div>
-    <div class="pq">"재밌잖아요. 왜 다들 그렇게 봐요?"<cite>— <span class="pt" onclick="openP('jace')">Jace Holden</span>, 완전히 진심인 눈으로</cite></div>
-
+    <!-- 기사 4: 제이스 전술 무시 -->
+    <span class="kicker">충격 제보 ★ 이주의 또라이</span>
+    <h2 class="hmd"><span class="pt" onclick="openP('jace')">제이스</span>, 주장 전술 지시 무시하고<br>단독 돌파 — 그리고 골</h2>
+    <div class="byl">by Charlotte Vane · Kingsbridge 훈련장</div>
+    <div class="img-wrap wide">
+      <img src="https://raw.githubusercontent.com/happyday3026-hash/KingsBridge/main/제이스경기.jpg" alt="제이스">
+      <span class="cap">▲ 골 직후 포착된 제이스. 표정에 죄책감 없음. 확인됨. Photo=본지</span>
+    </div>
+    <div class="bt">
+      <p>킹스브릿지 막내 윙어 제이스가 경기 중 주장 매튜가 직접 지시한 전술 패턴을 무시하고 단독 돌파를 감행했다. 결과는 골. 매튜 주장은 아무 말도 하지 않았다. 할 말이 없었기 때문이다.</p>
+      <p>경기 후 감독은 "창의적인 플레이"라고 했다. 매튜는 기자회견 내내 정면만 응시했다. 제이스는 그 자리에서 풍선껌을 꺼내 씹기 시작했다.</p>
+    </div>
+    <div class="pq">"지시 안 따른 거 맞아요. 근데 들어갔잖아요."<cite>— <span class="pt" onclick="openP('jace')">제이스</span>, 완전히 진심인 눈으로. 이게 더 무섭다</cite></div>
     <div class="cmts">
       <div class="cmts-title">독자 댓글 <small>5개</small></div>
-      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">콜드웰_넥타이_수호대</span><span class="cmt-time">방금</span></div><div class="cmt-txt">주장님 넥타이에 껌 묻혔다는 게 사실이면 홀든 그 날 집에 못 갔을 텐데...</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>2341</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>5</span></button></div></div>
-      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick sp">@현생오프</span><span class="cmt-time">5분 전</span></div><div class="cmt-txt">왜 다들 그렇게 봐요?ㅋㅋㅋㅋ 이 사람 공감능력이 진짜 0이구나</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>3102</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>2</span></button></div></div>
-      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">원정버스_피해자A</span><span class="cmt-time">13분 전</span></div><div class="cmt-txt">제가 피해자 4명 중 한 명입니다 (익명 제보)</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>5892</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>0</span></button></div></div>
-      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">Holden_변호인</span><span class="cmt-time">19분 전</span></div><div class="cmt-txt">저는 홀든 편입니다 껌 던지기는 팀 단합에 도움이 됩니다 과학적으로</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>441</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>1203</span></button></div></div>
-      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">맨시티_스카우트</span><span class="cmt-time">27분 전</span></div><div class="cmt-txt">저 아이 데려가면 우리 라커룸이 재밌어질 것 같아서요 (실명 제보)</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>7741</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>88</span></button></div></div>
+      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">매튜_넥타이_수호대</span><span class="cmt-time">방금</span></div><div class="cmt-txt">주장 표정 봤어요? 할 말이 없어서 아무 말도 안 한 거 저만 느꼈나요</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>4102</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>3</span></button></div></div>
+      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick sp">@현생오프</span><span class="cmt-time">5분 전</span></div><div class="cmt-txt">"근데 들어갔잖아요" 이 말이 진짜 소름... 잘못인데 반박을 못 해 ㅋㅋㅋㅋ</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>6891</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>0</span></button></div></div>
+      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">전술분석_Dr.박</span><span class="cmt-time">13분 전</span></div><div class="cmt-txt">통계적으로 저 돌파 성공 확률 23%였습니다. 제이스는 그걸 몰랐거나 알고도 했거나 둘 다 무섭습니다</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>3341</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>7</span></button></div></div>
+      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">Caldwell_변호인</span><span class="cmt-time">19분 전</span></div><div class="cmt-txt">규정상 전술 지시 무시는 징계 사안입니다. 골이 들어갔어도요. 주장님 힘내세요</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>201</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>2847</span></button></div></div>
+      <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">맨시티_스카우트</span><span class="cmt-time">27분 전</span></div><div class="cmt-txt">데려가야겠습니다 (실명 제보)</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>9203</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>44</span></button></div></div>
     </div>
 
     <hr class="rd">
 
-    <!-- 이적 루머 -->
     <!-- 관계도 + 궁합 테스트 버튼 -->
-    <hr class="rd">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 10px">
+    <div class="feat-row">
       <button class="feat-btn" onclick="openRelation()">
         <span class="feat-icon">🕸️</span>
         <span class="feat-title">4인방 관계도</span>
@@ -314,28 +381,27 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
         <span class="feat-sub">나는 누구랑 맞을까?</span>
       </button>
     </div>
+
     <hr class="rd">
 
     <!-- 투표 -->
     <span class="kicker">팬 투표 — 탭해서 직접 투표!</span>
-    <table class="tbl" id="vote-tbl">
+    <table class="tbl">
       <tr><th>장면</th><th class="n">득표</th></tr>
-      <tr class="vote-row" data-v="3291"><td>👀 세리머니 중 눈 안 마주침 (밴스↔콜드웰)</td><td><div class="vbar-wrap"><div class="vbar" style="width:100%"></div><span class="vcnt">3,291</span></div></td></tr>
-      <tr class="vote-row" data-v="2108"><td>🔒 리베라 라커 봉인 사건</td><td><div class="vbar-wrap"><div class="vbar" style="width:64%"></div><span class="vcnt">2,108</span></div></td></tr>
-      <tr class="vote-row" data-v="1847"><td>🍬 홀든, 주장 넥타이에 껌 접촉</td><td><div class="vbar-wrap"><div class="vbar" style="width:56%"></div><span class="vcnt">1,847</span></div></td></tr>
+      <tr class="vote-row" data-v="3291"><td>👀 세리머니 눈 안 마주침 (줄리안↔매튜)</td><td><div class="vbar-wrap"><div class="vbar" style="width:100%"></div><span class="vcnt">3,291</span></div></td></tr>
+      <tr class="vote-row" data-v="2108"><td>🔒 루카스 라커 봉인 사건</td><td><div class="vbar-wrap"><div class="vbar" style="width:64%"></div><span class="vcnt">2,108</span></div></td></tr>
+      <tr class="vote-row" data-v="1847"><td>🎯 제이스, 전술 무시하고 골 — 주장 침묵</td><td><div class="vbar-wrap"><div class="vbar" style="width:56%"></div><span class="vcnt">1,847</span></div></td></tr>
       <tr class="vote-row" data-v="1203"><td>☕ 카페 우연 목격 — 동일 주문</td><td><div class="vbar-wrap"><div class="vbar" style="width:37%"></div><span class="vcnt">1,203</span></div></td></tr>
       <tr class="vote-row" data-v="944"><td>📏 기자회견 4명 2m 간격 유지</td><td><div class="vbar-wrap"><div class="vbar" style="width:29%"></div><span class="vcnt">944</span></div></td></tr>
     </table>
     <p style="font-family:'Noto Serif KR',serif;font-size:10px;color:var(--gray);margin-top:3px">※ 행 탭하면 투표 가능. 당사자들은 "별 일 아니다" 주장 중.</p>
 
     <hr class="rn">
-
-    <div class="pq">"콜드웰이 라커 봉인한 공문 액자로 팔아주세요. 살게요."<cite>— 시즌권 8년차 익명 독자</cite></div>
+    <div class="pq">"매튜이 라커 봉인한 공문 액자로 팔아주세요. 살게요."<cite>— 시즌권 8년차 익명 독자</cite></div>
     <div class="pq">"화보집: 4명이 서로 다른 방향 보는 컷. 제목은 '우리는 팀이다'."<cite>— @현생오프 (본지 지정 공식 팬 닉네임 1호)</cite></div>
-
     <div class="adbx">
       <div class="at">킹스브릿지 공식 굿즈샵</div>
-      <div class="as">홀든이 던진 껌은 굿즈로 판매하지 않습니다</div>
+      <div class="as">"근데 들어갔잖아요" 티셔츠 출시 예정</div>
       <div class="an">📞 +44 20 7946 0391</div>
     </div>
   </div>
@@ -349,244 +415,140 @@ body{background:#161616;font-family:'Noto Serif KR',serif;color:var(--ink);paddi
   <div class="ticker">
     <span class="tlbl">속보</span>
     <div class="ttrk">
-      ⚽ 밴스, 새벽 클럽 후 훈련 1등 도착 — 이유 불명 &nbsp;★&nbsp; 📋 콜드웰, 위생 점검 공문 3호 발행 &nbsp;★&nbsp; 🔴 리베라, 임시 라커서 타투 2개 추가 &nbsp;★&nbsp; ⚡ 홀든, 껌 씹다 감독 적발 — "몰랐어요" &nbsp;★&nbsp; 💰 이적설 부인한 밴스, 당일 파리행 항공편 확인 &nbsp;★&nbsp; 📸 구단 사진기자 "4명 한 프레임 불가" 사직 의사 &nbsp;★&nbsp; 🎯 라이벌 코스타, 경기 후 밴스에게 의미심장한 발언 &nbsp;★&nbsp; ⚽ 밴스, 새벽 클럽 후 훈련 1등 도착 — 이유 불명 &nbsp;★&nbsp; 📋 콜드웰, 위생 점검 공문 3호 발행 &nbsp;★&nbsp; 🔴 리베라, 임시 라커서 타투 2개 추가 &nbsp;★&nbsp; ⚡ 홀든, 껌 씹다 감독 적발 — "몰랐어요" &nbsp;★&nbsp; 💰 이적설 부인한 밴스, 당일 파리행 항공편 확인 &nbsp;★&nbsp;
+      ⚽ 줄리안, 새벽 클럽 후 훈련 1등 도착 — 이유 불명 &nbsp;★&nbsp; 📋 매튜, 위생 점검 공문 3호 발행 &nbsp;★&nbsp; 🔴 루카스, 임시 라커서 타투 2개 추가 &nbsp;★&nbsp; ⚡ 제이스, 전술 무시 단독 돌파 골 — 주장 기자회견 중 침묵 &nbsp;★&nbsp; 💰 이적설 부인한 줄리안, 당일 파리행 항공편 확인 &nbsp;★&nbsp; 📸 구단 사진기자 "4명 한 프레임 불가" 사직 의사 &nbsp;★&nbsp; 🎯 라이벌 코스타, 경기 후 줄리안에게 의미심장한 발언 &nbsp;★&nbsp; ⚽ 줄리안, 새벽 클럽 후 훈련 1등 도착 — 이유 불명 &nbsp;★&nbsp; 📋 매튜, 위생 점검 공문 3호 발행 &nbsp;★&nbsp; 🔴 루카스, 임시 라커서 타투 2개 추가 &nbsp;★&nbsp;
     </div>
   </div>
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ══ 데이터 ══ */
 const PL={
-  julian:{name:"Julian Vance",pos:"STRIKER · ST",number:"9",stats:[{v:"19",k:"Goals"},{v:"7",k:"Assists"},{v:"87%",k:"Dribble"},{v:"9.1",k:"Rating"},{v:"£72M",k:"Value"},{v:"∞",k:"Ego"}],scandals:["새벽 3시 메이페어 클럽 출입 (이번 주)","PSG 이적 루머 — 부인 후 파리행 항공편 확인","카페 우연 목격 — 리베라와 동일 주문","기자회견 감독 발언 롤렉스 만지며 정정","VIP 요트 파티 단독 전세 논란"],rumour:67},
-  lucas:{name:"Lucas Rivera",pos:"MIDFIELDER · MF",number:"11",stats:[{v:"8",k:"Goals"},{v:"14",k:"Assists"},{v:"91%",k:"Pass"},{v:"8.3",k:"Rating"},{v:"£51M",k:"Value"},{v:"99",k:"Charisma"}],scandals:["콜드웰 주장에 의해 라커 3일째 봉인 중","팀 단톡방 불만 이모지 도배 — 전원 읽음","바르셀로나 이적 루머 (부인 중)","카페 우연 목격 — 밴스와 동일 주문","타투 규정 위반 심의 중"],rumour:44},
-  matthew:{name:"Matthew Caldwell",pos:"CAPTAIN · CB",number:"5",stats:[{v:"2",k:"Goals"},{v:"1",k:"Assists"},{v:"96%",k:"Tackles"},{v:"8.6",k:"Rating"},{v:"£48M",k:"Value"},{v:"강박",k:"결벽"}],scandals:["리베라 라커 '위생 점검' 공문으로 봉인","팀 단톡방에 '규정준수' 스티커로 응수","기자회견 넥타이 여밈 강박 — 17회 포착","홀든 껌 투척 사건 처리 중","이적설 본인 직접 부인"],rumour:12},
-  jace:{name:"Jace Holden",pos:"WINGER · WG",number:"7",stats:[{v:"11",k:"Goals"},{v:"9",k:"Assists"},{v:"93%",k:"Speed"},{v:"8.0",k:"Rating"},{v:"£38M",k:"Value"},{v:"??",k:"공감능력"}],scandals:["원정 버스 껌 투척 사건 (피해자 4명)","주장 넥타이 껌 접촉 — 사건 심의 중","새벽 클럽 동행 의혹 (밴스와)","맨시티 스카우트 목격","훈련 중 껌 씹기 적발 — \"몰랐어요\""],rumour:38},
+  julian:{name:"줄리안",pos:"STRIKER · ST",number:"9",stats:[{v:"19",k:"Goals"},{v:"7",k:"Assists"},{v:"87%",k:"Dribble"},{v:"9.1",k:"Rating"},{v:"£72M",k:"Value"},{v:"∞",k:"Ego"}],scandals:["새벽 3시 메이페어 클럽 출입 (이번 주)","PSG 이적 루머 — 부인 후 파리행 항공편 확인","카페 우연 목격 — 루카스와 동일 주문","기자회견 감독 발언 롤렉스 만지며 정정","VIP 요트 파티 단독 전세 논란"],rumour:67},
+  lucas:{name:"루카스",pos:"MIDFIELDER · MF",number:"11",stats:[{v:"8",k:"Goals"},{v:"14",k:"Assists"},{v:"91%",k:"Pass"},{v:"8.3",k:"Rating"},{v:"£51M",k:"Value"},{v:"99",k:"Charisma"}],scandals:["매튜 주장에 의해 라커 3일째 봉인 중","팀 단톡방 불만 이모지 도배 — 전원 읽음","바르셀로나 이적 루머 (부인 중)","카페 우연 목격 — 줄리안와 동일 주문","타투 규정 위반 심의 중"],rumour:44},
+  matthew:{name:"매튜",pos:"CAPTAIN · CB",number:"5",stats:[{v:"2",k:"Goals"},{v:"1",k:"Assists"},{v:"96%",k:"Tackles"},{v:"8.6",k:"Rating"},{v:"£48M",k:"Value"},{v:"강박",k:"결벽"}],scandals:["루카스 라커 '위생 점검' 공문으로 봉인","팀 단톡방에 '규정준수' 스티커로 응수","기자회견 넥타이 여밈 강박 — 17회 포착","제이스 껌 투척 사건 처리 중","이적설 본인 직접 부인"],rumour:12},
+  jace:{name:"제이스",pos:"WINGER · WG",number:"7",stats:[{v:"11",k:"Goals"},{v:"9",k:"Assists"},{v:"93%",k:"Speed"},{v:"8.0",k:"Rating"},{v:"£38M",k:"Value"},{v:"??",k:"공감능력"}],scandals:["전술 무시 단독 돌파 후 골 — '근데 들어갔잖아요'","주장 매튜 기자회견 중 침묵 유발","새벽 클럽 동행 의혹 (줄리안와)","맨시티 스카우트 3경기 연속 목격","훈련 중 감독 전술 설명 중 딴 생각 포착"],rumour:38},
   coach:{name:"Gareth Holloway",pos:"HEAD COACH",number:"—",stats:[{v:"68%",k:"승률"},{v:"12",k:"기자회견"},{v:"1",k:"답변종류"},{v:"23",k:"거짓말"},{v:"55",k:"나이"},{v:"∞",k:"뻔뻔함"}],scandals:["기자회견 12분간 동일 답변 반복","선수 새벽 외출 '컨디션 관리' 해명","스캔들 무마 구단주 공모 의혹","팀 전술 '선수들만 아는 비밀' 발언","라커룸 사건 '열정적 소통'으로 서술"],rumour:55}
 };
 
+const PERSONAS={
+  vip:{icon:"💰",name:"VIP 스폰서 자제",desc:"아버지가 킹스브릿지 최대 후원자. 구단 내에서 공식적으로는 '건드리면 안 되는 존재'로 분류된다. 비공식적으로는 어떻게 분류되는지가 문제.",reacts:[{name:"줄리안",txt:"\"오, 크로우 회장 자제분? ...관심 없어요.\" (롤렉스 만지작. 관심 있음)"},  {name:"루카스",txt:"\"후원자 자제라고요? 재밌네요.\" (목덜미 스캔 중)"},{name:"매튜",txt:"\"규정상 특혜는 없습니다.\" (넥타이 여밈. 표정은 복잡)"},  {name:"제이스",txt:"\"와 아버지가 돈 많아요? 저도 껌 줄까요?\"}"],route:"추천 루트: 구단 VIP 박스 → 훈련장 관람 → '우연한' 라커룸 조우. 권력이 있어서 무시할 수 없고, 인간이라서 무시하고 싶은 4인방의 딜레마 시작."},
+  analyst:{icon:"📊",name:"구단 전속 분석관",desc:"전술 데이터 분석 계약직으로 소환됐다. 선수들의 경기 데이터를 다루는 업무인데 오늘 밤 어쩌다 보니 용도가 완전히 달라졌다.",reacts:[{name:"줄리안",txt:"\"내 데이터 분석하러 왔다고요? 나는 데이터로 안 읽혀요.\" (틀림)"},{name:"루카스",txt:"\"xG 수치 말고 나한테 관심 있는 거 있어요?\" (능글맞게)"},{name:"매튜",txt:"\"분석 결과를 공식 보고서로 제출하세요.\" (선 긋는 중)"},{name:"제이스",txt:"\"제 데이터 보면 뭐가 나와요? 껌 투척 횟수도 집계돼요?\"}"],route:"추천 루트: 경기 후 데이터 미팅 → 야근 중 우연한 조우 → '분석 대상'이 달라지는 순간. 선수들 입장에서 '나를 너무 잘 아는 사람'의 불편함과 매력 사이."},
+  reporter:{icon:"🎙️",name:"스포츠 전문 기자",desc:"킹스브릿지 담당 취재 기자. 기사를 쓰러 왔는데 어느 순간 내가 기사가 됐다. 이 상황을 어떻게 보도해야 할지 모르겠다.",reacts:[{name:"줄리안",txt:"\"오프 더 레코드로 말하는데... 녹음하고 있죠?\" (알면서 말함)"},{name:"루카스",txt:"\"기자한테 이러면 안 되는 거 알아요. 그래서 재밌는 거고.\""},  {name:"매튜",txt:"\"공식 인터뷰 외 발언은 인용 불가입니다.\" (그러나 말이 많아짐)"},{name:"제이스",txt:"\"저 기사 나면 SNS에 공유해줘요! 팔로워 늘려야 해서.\"}"],route:"추천 루트: 기자회견 → 단독 인터뷰 요청 → 취재와 사생활의 경계가 무너지는 순간. '쓰면 안 되는 것'을 알게 된 기자의 선택."},
+  medic:{icon:"💊",name:"구단 의료 스태프",desc:"선수 컨디션 관리 담당. 매일 신체 상태를 체크하고 부상을 예방하는 게 업무인데, 어떤 선수들은 '컨디션 체크'의 범위를 다르게 이해하고 있는 것 같다.",reacts:[{name:"줄리안",txt:"\"나 어디 아픈 데 없어요. 그냥 있어도 되나요?\""},  {name:"루카스",txt:"\"어깨 여기가 좀 뭉쳐서요.\" (뭉친 부위가 계속 늘어남)"},{name:"매튜",txt:"\"정기 검진 일정에 따라 진행하겠습니다.\" (유일하게 제대로 협조)"},{name:"제이스",txt:"\"껌 너무 씹으면 턱 나빠지나요? 진지하게 묻는 거예요.\"}"],route:"추천 루트: 정기 컨디션 체크 → 부상 선수 단독 케어 → 경기장 밖 선수들의 민낯과 마주하는 순간. '치료사'와 '사람' 사이의 경계."},
+  rival:{icon:"⚽",name:"라이벌 구단 선수",desc:"경기장에서는 적이다. 그런데 이렇게 됐다. 팀 동료들이 알면 큰일 나는 상황인데, 어쩐지 그게 더 자극이 되는 것 같기도 하다.",reacts:[{name:"줄리안",txt:"\"적팀 선수? ...더 흥미롭네요.\" (롤렉스 멈춤. 집중 모드)"},{name:"루카스",txt:"\"경기장에서 만났을 때랑 지금이랑 완전 다르죠?\" (웃음)"},{name:"매튜",txt:"\"이건 규정 위반입니다.\" (알면서도 그 자리에 있음)"},{name:"제이스",txt:"\"적팀이면 제가 경기 때 파울 하면 안 되겠네요. 고민해볼게요.\"}"],route:"추천 루트: 경기 후 믹스드존 → '우연한' 재조우 → 유니폼 바깥의 관계가 시작되는 순간. 라이벌에서 시작하는 가장 복잡한 케미."},
+  free:{icon:"✏️",name:"자유 설정",desc:"정해진 역할 없이 킹스브릿지 FC에 발을 들인 당신. 어떤 이유든, 어떤 포지션이든 — 이 팀에서 무슨 일이 일어날지는 당신이 결정한다.",reacts:[{name:"줄리안",txt:"\"당신이 누군지 모르겠는데.\" (그래서 더 신경 쓰임)"},{name:"루카스",txt:"\"설정이 없다는 게 제일 흥미로운 설정이죠.\""},  {name:"매튜",txt:"\"신원 확인이 필요합니다.\" (공문 준비 중)"},{name:"제이스",txt:"\"저랑 친구 해요! 껌 드릴게요.\"}"],route:"추천 루트: 완전 자유. 어떤 캐릭터와 어떤 방향으로 시작해도 OK. 시작설정에서 원하는 배경을 직접 써주세요."}
+};
+
+/* ══ 선수 팝업 ══ */
 function openP(id){
   const p=PL[id];if(!p)return;
   document.getElementById('pc').innerHTML=`
-    <div class="ph">
-      <div><div class="phn">${p.name}</div><div class="php">${p.pos}</div></div>
-      <div class="phno">#${p.number}</div>
-      <button class="pcls" onclick="closeP()">✕ 닫기</button>
-    </div>
+    <div class="ph"><div><div class="phn">${p.name}</div><div class="php">${p.pos}</div></div><div class="phno">#${p.number}</div><button class="pcls" onclick="closeP()">✕ 닫기</button></div>
     <div class="pb">
       <div class="sg">${p.stats.map(s=>`<div class="sc"><div class="sv">${s.v}</div><div class="sk">${s.k}</div></div>`).join('')}</div>
-      <div class="sct">📋 스캔들 이력</div>
-      ${p.scandals.map(s=>`<div class="sci">• ${s}</div>`).join('')}
+      <div class="sct">📋 스캔들 이력</div>${p.scandals.map(s=>`<div class="sci">• ${s}</div>`).join('')}
       <div class="rl"><span>이적 루머 지수</span><span>${p.rumour}%</span></div>
       <div class="rbg"><div class="rf" style="width:0" data-t="${p.rumour}"></div></div>
     </div>`;
   document.getElementById('pmodal').classList.add('on');
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    const b=document.querySelector('.rf');if(b)b.style.width=b.dataset.t+'%';
-  }));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{const b=document.querySelector('.rf');if(b)b.style.width=b.dataset.t+'%'}));
 }
 function closeP(){document.getElementById('pmodal').classList.remove('on')}
 document.getElementById('pmodal').addEventListener('click',function(e){if(e.target===this)closeP()});
 
-(function(){
-  const D=['일','월','화','수','목','금','토'],n=new Date();
-  document.getElementById('dout').textContent=`${n.getFullYear()}년 ${n.getMonth()+1}월 ${n.getDate()}일(${D[n.getDay()]}) · London`;
-})();
-
-/* ── 관계도 ── */
-const RELATIONS = {
-  julian:{
-    name:"Julian Vance", rels:[
-      {name:"Lucas Rivera", tag:"hos", label:"표면적 무관심 / 실제로는 둘만 아는 게 있음"},
-      {name:"Matthew Caldwell", tag:"hos", label:"세리머니 때 눈도 안 마주침. 서로 존재 부정 중"},
-      {name:"Jace Holden", tag:"unk", label:"새벽 클럽 동행 의혹. 본인들 부인 중"},
-      {name:"Gareth Holloway", tag:"neu", label:"감독은 밴스를 '컨디션 관리형 에이스'로 공식 인정"}
-    ]
-  },
-  lucas:{
-    name:"Lucas Rivera", rels:[
-      {name:"Julian Vance", tag:"unk", label:"카페 우연 목격. 동일 주문. 퇴장 2분 차이"},
-      {name:"Matthew Caldwell", tag:"hos", label:"라커 봉인 사건 진행 중. 단톡방 전쟁 중"},
-      {name:"Jace Holden", tag:"neu", label:"팀 내 유이한 단톡방 활성 멤버끼리 연대 의혹"},
-      {name:"Gareth Holloway", tag:"neu", label:"감독은 리베라를 '팀 분위기 담당'으로 활용 중"}
-    ]
-  },
-  matthew:{
-    name:"Matthew Caldwell", rels:[
-      {name:"Julian Vance", tag:"hos", label:"기자회견 동시 도착 후 2m 간격 유지. 현재진행형"},
-      {name:"Lucas Rivera", tag:"hos", label:"라커 봉인 공문 발행인. '결벽증은 철학' 주장"},
-      {name:"Jace Holden", tag:"hos", label:"넥타이 껌 접촉 사건 처리 중. 주장으로서 가장 힘든 관계"},
-      {name:"Gareth Holloway", tag:"neu", label:"감독의 공식 대변인 역할. 기자회견 앞줄 고정"}
-    ]
-  },
-  jace:{
-    name:"Jace Holden", rels:[
-      {name:"Julian Vance", tag:"unk", label:"새벽 클럽 동행 의혹. 유이하게 밴스에게 접근 가능한 인물"},
-      {name:"Lucas Rivera", tag:"neu", label:"팀 내 유이한 단톡방 활성 멤버. 비공식 연대"},
-      {name:"Matthew Caldwell", tag:"hos", label:"껌 투척 후 주장에게 '왜요?'라고 되물은 유일한 선수"},
-      {name:"Gareth Holloway", tag:"neu", label:"감독은 홀든을 '순수한 축구 본능'으로 해석 중 (오해)"}
-    ]
-  }
-};
-
-function openRelation(){
-  const rc = document.getElementById('relcard');
-  rc.innerHTML = `
-    <div class="ph">
-      <div><div class="phn">4인방 관계도</div><div class="php">WHO HATES WHO · KINGSBRIDGE FC</div></div>
-      <button class="pcls" onclick="closeRel()">✕ 닫기</button>
-    </div>
-    <div class="rel-grid">
-      ${Object.entries(RELATIONS).map(([id,p])=>`
-        <div class="rel-card">
-          <div class="rel-name">${p.name.split(' ')[0]}</div>
-          ${p.rels.map(r=>`
-            <div class="rel-item">
-              <span class="rel-tag ${r.tag}">${r.tag==='hos'?'혐관':r.tag==='unk'?'의혹':'중립'}</span>
-              <span>${r.name.split(' ')[0]} — ${r.label}</span>
-            </div>`).join('')}
-        </div>`).join('')}
-    </div>
-    <div class="rel-summary">
-      <p>※ 본 관계도는 본지 취재 기준. 당사자 전원 "별 일 없다" 주장 중. 우리는 믿지 않는다. 혐관지수 1위 콜드웰↔리베라 (라커봉인 현재진행형), 미확인 의혹 1위 밴스↔홀든 (새벽 클럽 동행설). 팀 화합도: 측정 불가.</p>
+/* ══ 페르소나 팝업 ══ */
+function openPersona(id){
+  const p=PERSONAS[id];if(!p)return;
+  document.querySelectorAll('.persona-btn').forEach(b=>b.classList.remove('sel'));
+  event.currentTarget.classList.add('sel');
+  document.getElementById('percard').innerHTML=`
+    <div class="ph"><div><div class="phn">포지션 선택</div><div class="php">YOUR ROLE · KINGSBRIDGE FC</div></div><button class="pcls" onclick="closePer()">✕ 닫기</button></div>
+    <div class="per-body">
+      <div class="per-hero"><div class="per-icon">${p.icon}</div><div class="per-name">${p.name}</div><div class="per-desc">${p.desc}</div></div>
+      <div class="per-react-title">4인방 첫 반응</div>
+      <div class="per-react">${p.reacts.map(r=>`<div class="per-react-item"><div class="per-react-name">${r.name}</div><div class="per-react-txt">${r.txt}</div></div>`).join('')}</div>
+      <div class="per-route-title">추천 시작 루트</div>
+      <div class="per-route"><p>${p.route}</p></div>
     </div>`;
+  document.getElementById('permodal').classList.add('on');
+}
+function closePer(){document.getElementById('permodal').classList.remove('on')}
+document.getElementById('permodal').addEventListener('click',function(e){if(e.target===this)closePer()});
+
+/* ══ 관계도 팝업 ══ */
+const RELATIONS=[
+  {id:'julian',name:'Vance',rels:[{n:'Rivera',tag:'unk',l:'카페 우연 목격. 동일 주문. 퇴장 2분 차이. 아무것도 모른다고 한다'},{n:'Caldwell',tag:'hos',l:'세리머니 때 눈도 안 마주침. 서로 존재 부정 중'},{n:'Holden',tag:'unk',l:'새벽 클럽 동행 의혹. 유이하게 줄리안에게 접근 가능한 인물'}]},
+  {id:'lucas',name:'Rivera',rels:[{n:'Vance',tag:'unk',l:'동일 주문 카페 목격. 47분간 폰만 봄. 퇴장 2분 차이'},{n:'Caldwell',tag:'hos',l:'라커 봉인 공문 발행인. 단톡방 전쟁 3일째 진행 중'},{n:'Holden',tag:'neu',l:'팀 내 유일한 단톡방 활성 멤버 연대 의혹'}]},
+  {id:'matthew',name:'Caldwell',rels:[{n:'Vance',tag:'hos',l:'기자회견 동시 도착 후 2m 간격 유지. 현재진행형'},{n:'Rivera',tag:'hos',l:'라커 봉인 공문 발행. "결벽증은 철학" 주장 중'},{n:'Holden',tag:'hos',l:'넥타이 껌 접촉 사건 처리 중. 주장으로서 가장 힘든 관계'}]},
+  {id:'jace',name:'Holden',rels:[{n:'Vance',tag:'unk',l:'새벽 클럽 동행 의혹. 유이하게 줄리안 옆에 있을 수 있는 인물'},{n:'Rivera',tag:'neu',l:'단톡방 유이 활성 멤버. 비공식 연대'},{n:'Caldwell',tag:'hos',l:'껌 투척 후 "왜요?"라고 되물은 유일한 선수'}]}
+];
+function openRelation(){
+  document.getElementById('relcard').innerHTML=`
+    <div class="ph"><div><div class="phn">4인방 관계도</div><div class="php">WHO HATES WHO · KINGSBRIDGE FC</div></div><button class="pcls" onclick="closeRel()">✕ 닫기</button></div>
+    <div class="rel-grid">${RELATIONS.map(p=>`
+      <div class="rel-card">
+        <div class="rel-name">${p.name}</div>
+        ${p.rels.map(r=>`<div class="rel-item"><span class="rel-tag ${r.tag}">${r.tag==='hos'?'혐관':r.tag==='unk'?'의혹':'중립'}</span><span>${r.n} — ${r.l}</span></div>`).join('')}
+      </div>`).join('')}
+    </div>
+    <div class="rel-note">※ 혐관 최강: 매튜↔루카스 (라커봉인 현재진행형). 미확인 의혹 최강: 줄리안↔제이스 (새벽클럽 동행설). 줄리안↔루카스는 카페 사건 이후 '의혹'으로 격상. 팀 화합도: 측정 불가.</div>`;
   document.getElementById('relmodal').classList.add('on');
 }
 function closeRel(){document.getElementById('relmodal').classList.remove('on')}
 document.getElementById('relmodal').addEventListener('click',function(e){if(e.target===this)closeRel()});
 
-/* ── 궁합 테스트 ── */
-const QUESTIONS = [
-  {
-    q:"주말 오후, 나는?",
-    opts:[
-      {t:"VIP 클럽 예약 후 롤렉스 고르는 중", s:"julian"},
-      {t:"아무 카페나 들어가서 분위기 파악 중", s:"lucas"},
-      {t:"집에서 넥타이 다림질하며 스케줄 정리", s:"matthew"},
-      {t:"팀원한테 이유 없이 연락해서 같이 뭔가 하려는 중", s:"jace"}
-    ]
-  },
-  {
-    q:"누군가 나를 화나게 했을 때",
-    opts:[
-      {t:"미소 유지하며 롤렉스 만지작. 눈빛만 차갑게", s:"julian"},
-      {t:"웃는 얼굴로 가장 아픈 말 한마디 날림", s:"lucas"},
-      {t:"공문 한 장 작성 후 규정에 따라 처리", s:"matthew"},
-      {t:"그게 왜 잘못이에요? 진짜 모름", s:"jace"}
-    ]
-  },
-  {
-    q:"팀 단톡방에서 나는?",
-    opts:[
-      {t:"읽씹 전문. 필요할 때만 한 줄", s:"julian"},
-      {t:"이모지 연속 폭격 후 갑자기 오프라인", s:"lucas"},
-      {t:"규정 공지만 올림. 답장 강요 안 함", s:"matthew"},
-      {t:"아무 때나 보내고 읽었냐고 바로 확인 연락", s:"jace"}
-    ]
-  },
-  {
-    q:"원정 버스 안에서 나는?",
-    opts:[
-      {t:"이어폰 끼고 창문 봄. 말 걸지 마세요", s:"julian"},
-      {t:"옆 사람 은근슬쩍 관찰하며 약점 파악 중", s:"lucas"},
-      {t:"좌석 배치표 재검토 중. 청결 상태 점검", s:"matthew"},
-      {t:"심심해서 내기 제안하다 거절당하면 껌 투척", s:"jace"}
-    ]
-  }
+/* ══ 궁합 테스트 ══ */
+const QS=[
+  {q:"주말 오후, 나는?",opts:[{t:"VIP 클럽 예약 후 롤렉스 고르는 중",s:"julian"},{t:"아무 카페나 들어가서 분위기 파악 중",s:"lucas"},{t:"집에서 넥타이 다림질하며 스케줄 정리",s:"matthew"},{t:"팀원한테 이유 없이 연락해서 같이 뭔가 하려는 중",s:"jace"}]},
+  {q:"누군가 나를 화나게 했을 때",opts:[{t:"미소 유지하며 눈빛만 차갑게",s:"julian"},{t:"웃는 얼굴로 가장 아픈 말 한마디 날림",s:"lucas"},{t:"공문 한 장 작성 후 규정에 따라 처리",s:"matthew"},{t:"그게 왜 잘못이에요? 진짜 모름",s:"jace"}]},
+  {q:"팀 단톡방에서 나는?",opts:[{t:"읽씹 전문. 필요할 때만 한 줄",s:"julian"},{t:"이모지 연속 폭격 후 갑자기 오프라인",s:"lucas"},{t:"규정 공지만 올림. 답장 강요 안 함",s:"matthew"},{t:"아무 때나 보내고 읽었냐고 바로 확인 연락",s:"jace"}]},
+  {q:"원정 버스 안에서 나는?",opts:[{t:"이어폰 끼고 창문 봄. 말 걸지 마세요",s:"julian"},{t:"옆 사람 은근슬쩍 관찰하며 약점 파악 중",s:"lucas"},{t:"좌석 배치표 재검토 중. 청결 상태 점검",s:"matthew"},{t:"심심해서 내기 제안하다 거절당하면 껌 투척",s:"jace"}]}
 ];
-
-const RESULTS = {
-  julian:{
-    compat:"줄리안 밴스 타입",
-    desc:"당신은 표면적으로 완벽하고 모든 걸 통제하는 것처럼 보이지만 실제로는 아무도 모르는 새벽 루틴이 있습니다. 롤렉스는 장식이 아니라 감정 조절 도구예요. '컨디션 관리 방식이 남들과 다를 뿐'이라는 말이 공감되신다면 당신은 이미 밴스입니다.",
-    tag:"#오만하지만 매력적 #새벽 3시가 황금시간"
-  },
-  lucas:{
-    compat:"루카스 리베라 타입",
-    desc:"당신은 겉으로는 여유롭고 능글맞지만 실제로는 모든 걸 관찰하고 있어요. 상대방이 방심하는 순간을 정확히 포착합니다. 단톡방 이모지 도배 후 갑자기 오프라인 하는 스타일. 라커가 봉인돼도 쿨하게 타투나 추가합니다.",
-    tag:"#능글능글 #관찰력 만렙 #허무주의자"
-  },
-  matthew:{
-    compat:"매튜 콜드웰 타입",
-    desc:"당신은 규율과 통제를 사랑하며 모든 문제를 공문 한 장으로 해결하려 합니다. 결벽증이 있고 넥타이는 항상 완벽하게 여며져 있어야 해요. 주변 사람들이 '왜 이렇게까지 하냐'고 물으면 '이게 기준'이라고 대답합니다.",
-    tag:"#규율이 곧 철학 #결벽증 #위선자 코스프레 중"
-  },
-  jace:{
-    compat:"제이스 홀든 타입",
-    desc:"당신은 나쁜 의도가 없는데 결과적으로 항상 사건 중심에 있습니다. 껌을 던진 건 그냥 재밌을 것 같아서였고 왜 다들 그렇게 보는지 진짜 이해가 안 돼요. 공감 능력이 낮다는 말을 듣지만 본인은 충분히 공감한다고 생각합니다.",
-    tag:"#맑눈광 #사고뭉치 #진심으로 모름"
-  }
+const RS={
+  julian:{compat:"줄리안 타입",desc:"표면적으로 완벽하고 모든 걸 통제하는 것처럼 보이지만 실제로는 아무도 모르는 새벽 루틴이 있습니다. 롤렉스는 장식이 아니라 감정 조절 도구예요. '컨디션 관리 방식이 남들과 다를 뿐'이라는 말이 공감되신다면 이미 줄리안입니다.",tag:"#오만하지만 매력적 #새벽 3시가 황금시간 #롤렉스는 무죄"},
+  lucas:{compat:"루카스 타입",desc:"겉으로는 여유롭고 능글맞지만 실제로는 모든 걸 관찰하고 있어요. 단톡방 이모지 도배 후 갑자기 오프라인 하는 스타일. 라커가 봉인돼도 타투나 추가합니다.",tag:"#능글능글 #관찰력 만렙 #허무주의자 #라커봉인도 쿨하게"},
+  matthew:{compat:"매튜 타입",desc:"규율과 통제를 사랑하며 모든 문제를 공문 한 장으로 해결하려 합니다. 결벽증이 있고 넥타이는 항상 완벽하게 여며져야 해요. '결벽증은 규정이 아니라 철학'이라는 말이 공감된다면 이미 매튜입니다.",tag:"#규율이 곧 철학 #결벽증 #위선자 코스프레 중 #공문작성력 만렙"},
+  jace:{compat:"제이스 타입",desc:"나쁜 의도가 없는데 결과적으로 항상 사건 중심에 있습니다. 껌을 던진 건 그냥 재밌을 것 같아서였고 왜 다들 그렇게 보는지 진짜 이해가 안 돼요.",tag:"#맑눈광 #사고뭉치 #진심으로 모름 #공감능력 ??"}
 };
-
-let testAnswers = {};
-let currentQ = 0;
-
-function startTest(){
-  testAnswers = {};
-  currentQ = 0;
-  document.getElementById('testmodal').classList.add('on');
-  renderQ();
-}
+let answers={},curQ=0;
+function startTest(){answers={};curQ=0;document.getElementById('testmodal').classList.add('on');renderQ();}
 function closeTest(){document.getElementById('testmodal').classList.remove('on')}
 document.getElementById('testmodal').addEventListener('click',function(e){if(e.target===this)closeTest()});
-
 function renderQ(){
-  const tc = document.getElementById('testcard');
-  const q = QUESTIONS[currentQ];
-  const pct = Math.round((currentQ/QUESTIONS.length)*100);
-  tc.innerHTML = `
-    <div class="ph">
-      <div><div class="phn">캐릭터 궁합 테스트</div><div class="php">나는 누구랑 맞을까? · KINGSBRIDGE FC</div></div>
-      <button class="pcls" onclick="closeTest()">✕ 닫기</button>
-    </div>
+  const q=QS[curQ];
+  const pct=Math.round((curQ/QS.length)*100);
+  document.getElementById('testcard').innerHTML=`
+    <div class="ph"><div><div class="phn">캐릭터 궁합 테스트</div><div class="php">나는 누구랑 맞을까? · KINGSBRIDGE FC</div></div><button class="pcls" onclick="closeTest()">✕ 닫기</button></div>
     <div class="test-wrap">
-      <div class="test-progress">질문 ${currentQ+1} / ${QUESTIONS.length}</div>
+      <div class="test-progress">질문 ${curQ+1} / ${QS.length}</div>
       <div class="test-prog-bar"><div class="test-prog-fill" style="width:${pct}%"></div></div>
-      <div class="test-q"><span>Q${currentQ+1}</span>${q.q}</div>
-      <div class="test-opts">
-        ${q.opts.map((o,i)=>`<button class="test-opt" onclick="answerQ('${o.s}')">${o.t}</button>`).join('')}
-      </div>
+      <div class="test-q"><span>Q${curQ+1}</span>${q.q}</div>
+      <div class="test-opts">${q.opts.map(o=>`<button class="test-opt" onclick="answerQ('${o.s}')">${o.t}</button>`).join('')}</div>
     </div>`;
 }
-
-function answerQ(score){
-  testAnswers[score] = (testAnswers[score]||0) + 1;
-  currentQ++;
-  if(currentQ >= QUESTIONS.length){
-    showResult();
-  } else {
-    renderQ();
-  }
+function answerQ(s){
+  answers[s]=(answers[s]||0)+1;
+  curQ++;
+  if(curQ>=QS.length)showResult();else renderQ();
 }
-
 function showResult(){
-  const top = Object.entries(testAnswers).sort((a,b)=>b[1]-a[1])[0][0];
-  const r = RESULTS[top];
-  const p = PL[top];
-  const tc = document.getElementById('testcard');
-  tc.innerHTML = `
-    <div class="ph">
-      <div><div class="phn">결과 발표</div><div class="php">YOUR KINGSBRIDGE TYPE</div></div>
-      <button class="pcls" onclick="closeTest()">✕ 닫기</button>
-    </div>
-    <div class="result-wrap">
-      <div class="result-char">
-        <div class="result-num">#${p.number}</div>
-        <div class="result-name">${p.name}</div>
-        <div class="result-pos">${p.pos}</div>
-      </div>
+  const top=Object.entries(answers).sort((a,b)=>b[1]-a[1])[0][0];
+  const r=RS[top];const p=PL[top];
+  document.getElementById('testcard').innerHTML=`
+    <div class="ph"><div><div class="phn">결과 발표</div><div class="php">YOUR KINGSBRIDGE TYPE</div></div><button class="pcls" onclick="closeTest()">✕ 닫기</button></div>
+    <div class="test-wrap">
+      <div class="result-char"><div class="result-num">#${p.number}</div><div class="result-name">${p.name}</div><div class="result-pos">${p.pos}</div></div>
       <div class="result-compat">당신은 ${r.compat}입니다</div>
       <div class="result-desc">${r.desc}</div>
-      <div style="font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:.1em;color:var(--gray);margin-top:8px">${r.tag}</div>
+      <div class="result-tag">${r.tag}</div>
       <button class="result-retry" onclick="startTest()">다시 테스트하기 ▶</button>
     </div>`;
 }
 
-function vote(btn){
-  if(btn.classList.contains('vd'))return;
-  btn.classList.add('vd');
-  const sp=btn.querySelector('span');
-  if(sp)sp.textContent=(+sp.textContent.replace(/,/g,'')+1).toLocaleString();
-}
+/* ══ 날짜 ══ */
+(function(){const D=['일','월','화','수','목','금','토'],n=new Date();document.getElementById('dout').textContent=`${n.getFullYear()}년 ${n.getMonth()+1}월 ${n.getDate()}일(${D[n.getDay()]}) · London`;})();
 
+/* ══ 투표 ══ */
 (function(){
   const rows=document.querySelectorAll('.vote-row');
   let maxV=Math.max(...[...rows].map(r=>+r.dataset.v));
@@ -597,4 +559,11 @@ function vote(btn){
       const newV=+this.dataset.v+1;
       this.dataset.v=newV;
       const cnt=this.querySelector('.vcnt');
-      if(cnt)cnt.textContent=newV.toLocaleStr
+      if(cnt)cnt.textContent=newV.toLocaleString();
+      maxV=Math.max(maxV,newV);
+      rows.forEach(r=>{const bar=r.querySelector('.vbar');if(bar)bar.style.width=Math.round(+r.dataset.v/maxV*100)+'%';});
+    });
+  });
+})();
+
+/* ══ 댓글 좋아요/싫어요 ══ */
