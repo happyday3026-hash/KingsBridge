@@ -390,6 +390,38 @@ window._RS={
     if(el)el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
   });
 })();
+
+/* BGM */
+window.bgmPlayer=null;
+window.bgmReady=false;
+window.loadYTApi=function(){
+  if(window.YT&&window.YT.Player){window.initBGMPlayer();return;}
+  if(document.getElementById('yt-api-script'))return;
+  var s=document.createElement('script');
+  s.id='yt-api-script';
+  s.src='https://www.youtube.com/iframe_api';
+  document.head.appendChild(s);
+};
+window.onYouTubeIframeAPIReady=function(){window.initBGMPlayer();};
+window.initBGMPlayer=function(){
+  if(window.bgmPlayer)return;
+  window.bgmPlayer=new YT.Player('bgm-player',{
+    height:'140',width:'100%',
+    videoId:'FfIyLFqBc7w',
+    playerVars:{autoplay:1,controls:1,modestbranding:1,rel:0,fs:0},
+    events:{onReady:function(e){window.bgmReady=true;e.target.playVideo();}}
+  });
+};
+window.openBGM=function(){
+  var popup=document.getElementById('bgm-popup');
+  popup.style.display='block';
+  // 팝업이 완전히 보인 후 초기화
+  setTimeout(function(){window.loadYTApi();},50);
+};
+window.closeBGM=function(){
+  document.getElementById('bgm-popup').style.display='none';
+  if(window.bgmPlayer&&window.bgmReady)window.bgmPlayer.pauseVideo();
+};
 </script>
 </head>
 <body>
@@ -401,12 +433,35 @@ window._RS={
 <div class="modal" id="permodal"><div class="pcard" id="percard"></div></div>
 
 <div class="np">
-  <div class="top-bar"><span id="dout">—</span><span class="pip">BREAKING</span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="315a535550585d48715a585f56425343585556541f5752">[email&#160;protected]</a></span></div>
+  <div class="top-bar"><span id="dout">—</span><span class="pip">BREAKING</span><span>FC KINGSBRIDGE · LONDON</span></div>
 
   <div class="masthead">
     <div class="pname">킹스브릿지<span class="daily">DAILY</span></div>
     <div class="msub"><span>Est. 2024 · London</span><span class="motto">진실은 그라운드 위에 있다</span><span>£1.50</span></div>
   </div>
+
+  <!-- BGM 플레이어 -->
+  <div style="background:var(--ink);padding:7px 12px;border-bottom:2px solid var(--red);display:flex;align-items:center;gap:10px">
+    <span style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:.12em;color:var(--red);white-space:nowrap">🎵 BGM</span>
+    <span style="font-family:'Noto Serif KR',serif;font-size:9.5px;color:rgba(244,239,228,.5);font-style:italic;flex:1">킹스브릿지 데일리 플리</span>
+    <button onclick="openBGM()" style="background:var(--red);border:none;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.08em;padding:5px 12px;cursor:pointer;-webkit-tap-highlight-color:transparent">▶ 재생</button>
+  </div>
+
+  <!-- BGM 팝업 -->
+  <div id="bgm-popup" style="display:none;position:fixed;bottom:20px;right:16px;z-index:9999;background:#1a1a2e;border:2px solid var(--red);border-radius:8px;width:260px;box-shadow:0 8px 32px rgba(0,0,0,.8)">
+    <div style="background:var(--red);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;border-radius:6px 6px 0 0">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.1em;color:#fff">🎵 BGM</span>
+      <button onclick="closeBGM()" style="background:none;border:none;color:#fff;font-size:14px;cursor:pointer;padding:0 4px;line-height:1">✕</button>
+    </div>
+    <div style="padding:10px">
+      <div id="bgm-player"></div>
+    </div>
+    <div style="padding:0 10px 8px;text-align:center">
+      <img src="https://www.youtube.com/yts/img/yt_1200-vfl5-Global.png" height="12" style="opacity:.4" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+
 
   <!-- ★ 페르소나 선택 섹션 ★ -->
   <div class="persona-section">
@@ -532,7 +587,7 @@ window._RS={
       <p>팀 내 사이 나쁘기로 유명한 두 선수 — 줄리안과 루카스. 평소 라커룸에서도 눈을 마주치지 않는 두 사람이 같은 카페에서 목격됐다. 테이블 거리는 4m. 주문은 아메리카노, 설탕 없이. 동일.</p>
       <p>퇴장 시각은 2분 차이였다. "같이 나간 게 아니라고 확신할 수 없었다." — 목격자 최종 증언.</p>
     </div>
-    <div class="pq">"거기 있었던 건 맞는데, 그 사람은 못 봤습니다."<cite>— Vance. Rivera도 정확히 같은 말. 본지는 믿지 않는다</cite></div>
+    <div class="pq">"거기 있었던 건 맞는데, 그 사람은 못 봤습니다."<cite>— 줄리안. 루카스도 정확히 같은 말. 본지는 믿지 않는다</cite></div>
     <div class="cmts">
       <div class="cmts-title">독자 댓글 <small>5개</small></div>
       <div class="cmt"><div class="cmt-meta"><span class="cmt-nick">KingsRoad_목격자2</span><span class="cmt-time">2분 전</span></div><div class="cmt-txt">아메리카노 설탕없이 동일주문... 둘이 취향도 같은 거 알면서 모른척하는 거 맞죠?</div><div class="cmt-acts"><button class="vbtn u" onclick="vote(this)">👍 <span>1203</span></button><button class="vbtn d" onclick="vote(this)">👎 <span>7</span></button></div></div>
