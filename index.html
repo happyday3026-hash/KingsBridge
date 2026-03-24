@@ -418,6 +418,13 @@ window.openBGM=function(){
   // 팝업이 완전히 보인 후 초기화
   setTimeout(function(){window.loadYTApi();},50);
 };
+window.minimizeBGM=function(){
+  var body=document.getElementById('bgm-body');
+  var popup=document.getElementById('bgm-popup');
+  window.bgmMinimized=!window.bgmMinimized;
+  body.style.display=window.bgmMinimized?'none':'block';
+  popup.style.width=window.bgmMinimized?'140px':'260px';
+};
 window.closeBGM=function(){
   document.getElementById('bgm-popup').style.display='none';
   if(window.bgmPlayer&&window.bgmReady)window.bgmPlayer.pauseVideo();
@@ -449,17 +456,69 @@ window.closeBGM=function(){
 
   <!-- BGM 팝업 -->
   <div id="bgm-popup" style="display:none;position:fixed;bottom:20px;right:16px;z-index:9999;background:#1a1a2e;border:2px solid var(--red);border-radius:8px;width:260px;box-shadow:0 8px 32px rgba(0,0,0,.8)">
-    <div style="background:var(--red);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;border-radius:6px 6px 0 0">
+    <div id="bgm-header" style="background:var(--red);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;border-radius:6px 6px 0 0;cursor:grab;user-select:none">
       <span style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.1em;color:#fff">🎵 BGM</span>
-      <button onclick="closeBGM()" style="background:none;border:none;color:#fff;font-size:14px;cursor:pointer;padding:0 4px;line-height:1">✕</button>
+      <div style="display:flex;gap:6px;align-items:center">
+        <button onclick="minimizeBGM()" title="최소화" style="background:none;border:none;color:#fff;font-size:14px;cursor:pointer;padding:0 4px;line-height:1">—</button>
+        <button onclick="closeBGM()" title="닫기" style="background:none;border:none;color:#fff;font-size:14px;cursor:pointer;padding:0 4px;line-height:1">✕</button>
+      </div>
     </div>
-    <div style="padding:10px">
+    <div id="bgm-body" style="padding:10px">
       <div id="bgm-player"></div>
     </div>
-    <div style="padding:0 10px 8px;text-align:center">
-      <img src="https://www.youtube.com/yts/img/yt_1200-vfl5-Global.png" height="12" style="opacity:.4" onerror="this.style.display='none'">
-    </div>
   </div>
+
+  <script>
+  /* BGM 최소화 + 드래그 */
+  window.bgmMinimized=false;
+  window.minimizeBGM=function(){
+    var body=document.getElementById('bgm-body');
+    var popup=document.getElementById('bgm-popup');
+    window.bgmMinimized=!window.bgmMinimized;
+    body.style.display=window.bgmMinimized?'none':'block';
+    popup.style.width=window.bgmMinimized?'140px':'260px';
+  };
+
+  // 드래그
+  document.addEventListener('DOMContentLoaded',function(){
+    var popup=document.getElementById('bgm-popup');
+    var header=document.getElementById('bgm-header');
+    if(!header)return;
+    var dragging=false,ox=0,oy=0;
+    header.addEventListener('mousedown',function(e){
+      dragging=true;
+      ox=e.clientX-popup.getBoundingClientRect().left;
+      oy=e.clientY-popup.getBoundingClientRect().top;
+      popup.style.right='auto';
+      popup.style.bottom='auto';
+      header.style.cursor='grabbing';
+    });
+    document.addEventListener('mousemove',function(e){
+      if(!dragging)return;
+      popup.style.left=(e.clientX-ox)+'px';
+      popup.style.top=(e.clientY-oy)+'px';
+    });
+    document.addEventListener('mouseup',function(){
+      dragging=false;
+      if(header)header.style.cursor='grab';
+    });
+    // 터치 드래그
+    header.addEventListener('touchstart',function(e){
+      var t=e.touches[0];
+      dragging=true;
+      ox=t.clientX-popup.getBoundingClientRect().left;
+      oy=t.clientY-popup.getBoundingClientRect().top;
+      popup.style.right='auto';popup.style.bottom='auto';
+    });
+    document.addEventListener('touchmove',function(e){
+      if(!dragging)return;
+      var t=e.touches[0];
+      popup.style.left=(t.clientX-ox)+'px';
+      popup.style.top=(t.clientY-oy)+'px';
+    });
+    document.addEventListener('touchend',function(){dragging=false;});
+  });
+  </script>
 
 
 
