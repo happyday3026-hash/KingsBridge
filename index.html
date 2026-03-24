@@ -262,6 +262,134 @@ window.showResult=function(){
   var card=document.getElementById('testcard');if(!card)return;
   card.innerHTML='<div class="ph"><div><div class="phn">궁합 결과</div><div class="php">YOUR KINGSBRIDGE MATCH</div></div><button class="pcls" onclick="closeTest()">✕ 닫기</button></div><div class="test-wrap"><div class="result-char"><div class="result-num">#'+p.number+'</div><div class="result-name">'+p.name+'</div><div class="result-pos">'+p.pos+'</div></div><div class="result-compat">'+r.compat+'</div><p style="font-family:\'Noto Serif KR\',serif;font-size:12px;font-weight:700;font-style:italic;color:var(--ink);margin:8px 0 6px;line-height:1.55;border-left:3px solid var(--red);padding-left:8px">'+r.summary+'</p><div class="result-desc">'+r.desc+'</div><p style="font-family:\'Noto Serif KR\',serif;font-size:10.5px;color:var(--red);margin-top:8px;font-style:italic">'+r.warn+'</p><div class="result-tag" style="margin-top:6px">'+r.tag+'</div><button class="result-retry" onclick="startTest()">다시 테스트하기 ▶</button></div>';
 };
+/* 데이터 등록 — window._ 전역으로 */
+window._PL={
+  julian:{name:"줄리안",pos:"STRIKER · ST",number:"9",stats:[{v:"19",k:"Goals"},{v:"7",k:"Assists"},{v:"87%",k:"Dribble"},{v:"9.1",k:"Rating"},{v:"£72M",k:"Value"},{v:"∞",k:"Ego"}],scandals:["새벽 3시 메이페어 클럽 출입 (이번 주)","PSG 이적 루머 — 부인 후 파리행 항공편 확인","카페 우연 목격 — 루카스와 동일 주문","기자회견 감독 발언 롤렉스 만지며 정정","VIP 요트 파티 단독 전세 논란"],rumour:67},
+  lucas:{name:"루카스",pos:"MIDFIELDER · MF",number:"11",stats:[{v:"8",k:"Goals"},{v:"14",k:"Assists"},{v:"91%",k:"Pass"},{v:"8.3",k:"Rating"},{v:"£51M",k:"Value"},{v:"99",k:"Charisma"}],scandals:["매튜 주장에 의해 라커 3일째 봉인 중","팀 단톡방 불만 이모지 도배 — 전원 읽음","바르셀로나 이적 루머 (부인 중)","카페 우연 목격 — 줄리안과 동일 주문","타투 규정 위반 심의 중"],rumour:44},
+  matthew:{name:"매튜",pos:"CAPTAIN · CB",number:"5",stats:[{v:"2",k:"Goals"},{v:"1",k:"Assists"},{v:"96%",k:"Tackles"},{v:"8.6",k:"Rating"},{v:"£48M",k:"Value"},{v:"강박",k:"결벽"}],scandals:["루카스 라커 '위생 점검' 공문으로 봉인","팀 단톡방에 '규정준수' 스티커로 응수","기자회견 넥타이 여밈 강박 — 17회 포착","제이스 전술 무시 사건 처리 중","이적설 본인 직접 부인"],rumour:12},
+  jace:{name:"제이스",pos:"WINGER · WG",number:"7",stats:[{v:"11",k:"Goals"},{v:"9",k:"Assists"},{v:"93%",k:"Speed"},{v:"8.0",k:"Rating"},{v:"£38M",k:"Value"},{v:"??",k:"공감능력"}],scandals:["전술 무시 단독 돌파 후 골 — '근데 들어갔잖아요'","주장 매튜 기자회견 중 침묵 유발","새벽 클럽 동행 의혹 (줄리안과)","맨시티 스카우트 3경기 연속 목격","훈련 중 감독 전술 설명 중 딴 생각 포착"],rumour:38},
+  coach:{name:"Gareth Holloway",pos:"HEAD COACH",number:"—",stats:[{v:"68%",k:"승률"},{v:"12",k:"기자회견"},{v:"1",k:"답변종류"},{v:"23",k:"거짓말"},{v:"55",k:"나이"},{v:"∞",k:"뻔뻔함"}],scandals:["기자회견 12분간 동일 답변 반복","선수 새벽 외출 '컨디션 관리' 해명","스캔들 무마 구단주 공모 의혹","팀 전술 '선수들만 아는 비밀' 발언","라커룸 사건 '열정적 소통'으로 서술"],rumour:55}
+};
+window._PERSONAS={
+  vip:{icon:"💰",name:"VIP 스폰서 자제",desc:"아버지가 킹스브릿지 최대 후원자. 구단 내에서 공식적으로는 '건드리면 안 되는 존재'로 분류된다. 비공식적으로는 어떻게 분류되는지가 문제.",reacts:[{name:"줄리안",txt:"\"오, 크로우 회장 자제분? ...관심 없어요.\" (롤렉스 만지작. 관심 있음)"},{name:"루카스",txt:"\"후원자 자제라고요? 재밌네요.\" (목덜미 스캔 중)"},{name:"매튜",txt:"\"규정상 특혜는 없습니다.\" (넥타이 여밈. 표정은 복잡)"},{name:"제이스",txt:"\"와 아버지가 돈 많아요? 저랑 친구 해요.\""}],route:"추천 루트: 구단 VIP 박스 → 훈련장 관람 → '우연한' 라커룸 조우. 권력이 있어서 무시할 수 없고, 인간이라서 무시하고 싶은 4인방의 딜레마 시작."},
+  analyst:{icon:"📊",name:"구단 전속 분석관",desc:"전술 데이터 분석 계약직으로 소환됐다. 선수들의 경기 데이터를 다루는 업무인데 오늘 밤 어쩌다 보니 용도가 완전히 달라졌다.",reacts:[{name:"줄리안",txt:"\"내 데이터 분석하러 왔다고요? 나는 데이터로 안 읽혀요.\" (틀림)"},{name:"루카스",txt:"\"xG 수치 말고 나한테 관심 있는 거 있어요?\" (능글맞게)"},{name:"매튜",txt:"\"분석 결과를 공식 보고서로 제출하세요.\" (선 긋는 중)"},{name:"제이스",txt:"\"제 데이터 보면 뭐가 나와요?\""}],route:"추천 루트: 경기 후 데이터 미팅 → 야근 중 우연한 조우 → '분석 대상'이 달라지는 순간."},
+  reporter:{icon:"🎙️",name:"스포츠 전문 기자",desc:"킹스브릿지 담당 취재 기자. 기사를 쓰러 왔는데 어느 순간 내가 기사가 됐다.",reacts:[{name:"줄리안",txt:"\"오프 더 레코드로 말하는데... 녹음하고 있죠?\" (알면서 말함)"},{name:"루카스",txt:"\"기자한테 이러면 안 되는 거 알아요. 그래서 재밌는 거고.\""},{name:"매튜",txt:"\"공식 인터뷰 외 발언은 인용 불가입니다.\" (그러나 말이 많아짐)"},{name:"제이스",txt:"\"저 기사 나면 SNS에 공유해줘요!\""}],route:"추천 루트: 기자회견 → 단독 인터뷰 요청 → 취재와 사생활의 경계가 무너지는 순간."},
+  medic:{icon:"💊",name:"구단 의료 스태프",desc:"선수 컨디션 관리 담당. 어떤 선수들은 '컨디션 체크'의 범위를 다르게 이해하고 있는 것 같다.",reacts:[{name:"줄리안",txt:"\"나 어디 아픈 데 없어요. 그냥 있어도 되나요?\""},{name:"루카스",txt:"\"어깨 여기가 좀 뭉쳐서요.\" (뭉친 부위가 계속 늘어남)"},{name:"매튜",txt:"\"정기 검진 일정에 따라 진행하겠습니다.\" (유일하게 제대로 협조)"},{name:"제이스",txt:"\"발목이 자주 삐는데 이게 정상이에요? 진지하게요.\""}],route:"추천 루트: 정기 컨디션 체크 → 부상 선수 단독 케어 → 경기장 밖 선수들의 민낯과 마주하는 순간."},
+  rival:{icon:"⚽",name:"라이벌 구단 선수",desc:"경기장에서는 적이다. 그런데 이렇게 됐다. 팀 동료들이 알면 큰일 나는 상황.",reacts:[{name:"줄리안",txt:"\"적팀 선수? ...더 흥미롭네요.\" (롤렉스 멈춤)"},{name:"루카스",txt:"\"경기장에서 만났을 때랑 지금이랑 완전 다르죠?\""},{name:"매튜",txt:"\"이건 규정 위반입니다.\" (알면서도 그 자리에 있음)"},{name:"제이스",txt:"\"적팀이면 경기 때 파울 하면 안 되겠네요. 고민해볼게요.\""}],route:"추천 루트: 경기 후 믹스드존 → 우연한 재조우 → 유니폼 바깥의 관계가 시작되는 순간."},
+  free:{icon:"✏️",name:"자유 설정",desc:"정해진 역할 없이 킹스브릿지 FC에 발을 들인 당신. 어떤 이유든, 어떤 포지션이든.",reacts:[{name:"줄리안",txt:"\"당신이 누군지 모르겠는데.\" (그래서 더 신경 쓰임)"},{name:"루카스",txt:"\"설정이 없다는 게 제일 흥미로운 설정이죠.\""},{name:"매튜",txt:"\"신원 확인이 필요합니다.\" (공문 준비 중)"},{name:"제이스",txt:"\"저랑 친구 해요!\""}],route:"추천 루트: 완전 자유. 시작설정에서 원하는 배경을 직접 써주세요."}
+};
+window._RELATIONS=[
+  {id:'julian',name:'줄리안',rels:[{n:'루카스',tag:'unk',l:'카페 우연 목격. 동일 주문. 퇴장 2분 차이'},{n:'매튜',tag:'hos',l:'세리머니 때 눈도 안 마주침. 서로 존재 부정 중'},{n:'제이스',tag:'unk',l:'새벽 클럽 동행 의혹. 유이하게 줄리안 옆에 있을 수 있는 인물'}]},
+  {id:'lucas',name:'루카스',rels:[{n:'줄리안',tag:'unk',l:'동일 주문 카페 목격. 47분간 폰만 봄'},{n:'매튜',tag:'hos',l:'라커 봉인 공문 발행인. 단톡방 전쟁 3일째'},{n:'제이스',tag:'neu',l:'팀 내 유일한 단톡방 활성 멤버 연대 의혹'}]},
+  {id:'matthew',name:'매튜',rels:[{n:'줄리안',tag:'hos',l:'기자회견 동시 도착 후 2m 간격 유지'},{n:'루카스',tag:'hos',l:'라커 봉인 공문 발행. 기준이 곧 규정'},{n:'제이스',tag:'hos',l:'전술 무시 골 사건. 주장으로서 가장 힘든 관계'}]},
+  {id:'jace',name:'제이스',rels:[{n:'줄리안',tag:'unk',l:'새벽 클럽 동행 의혹. 유이하게 줄리안 옆에 있을 수 있는 인물'},{n:'루카스',tag:'neu',l:'단톡방 유이 활성 멤버. 비공식 연대'},{n:'매튜',tag:'hos',l:'전술 무시 후 주장 침묵 유발. 현재진행형'}]}
+];
+window._QS=[
+  {
+    q:"연애할 때 나는?",
+    sub:"솔직하게 골라주세요",
+    opts:[
+      {t:"관심 있어도 티 안 냄. 상대가 먼저 오게 만든다",s:"julian"},
+      {t:"분위기 보다가 적당한 타이밍에 치고 들어간다",s:"lucas"},
+      {t:"좋으면 그냥 직진. 계산 없이",s:"matthew"},
+      {t:"좋은지 아닌지 잘 모르겠는데 자꾸 생각난다",s:"jace"}
+    ]
+  },
+  {
+    q:"나의 일상 분위기는?",
+    sub:"가장 가까운 걸 골라주세요",
+    opts:[
+      {t:"조용하고 루틴 있음. 혼자 있는 시간이 편함",s:"julian"},
+      {t:"즉흥적이고 분위기 탐. 사람 읽는 게 재밌음",s:"lucas"},
+      {t:"계획적이고 정돈된 게 좋음. 예상 밖 상황이 불편함",s:"matthew"},
+      {t:"활발하고 일단 저지름. 나중에 수습",s:"jace"}
+    ]
+  },
+  {
+    q:"끌리는 상대 타입은?",
+    sub:"이상형에 가까운 걸로",
+    opts:[
+      {t:"겉은 차갑고 속은 다른 사람. 반전 있는 타입",s:"julian"},
+      {t:"위험한 냄새 나는데 나한테만 다른 사람",s:"lucas"},
+      {t:"믿을 수 있고 안정적인 사람. 근데 은근 강함",s:"matthew"},
+      {t:"예측 불가인데 순수함. 나쁜 의도가 없는 사람",s:"jace"}
+    ]
+  },
+  {
+    q:"갈등 상황에서 나는?",
+    sub:"마지막 질문이에요",
+    opts:[
+      {t:"말 안 하고 거리 둠. 상대가 눈치채길 기다림",s:"julian"},
+      {t:"웃으면서 넘기는 척하다 나중에 한 방",s:"lucas"},
+      {t:"감정보다 상황 정리가 먼저. 선 긋고 처리",s:"matthew"},
+      {t:"왜 갈등인지 모름. 진짜로. 설명해줘야 함",s:"jace"}
+    ]
+  }
+];
+window._RS={
+  julian:{
+    name:"줄리안",
+    compat:"줄리안과 궁합",
+    summary:"당신은 말하지 않아도 읽히는 사람, 줄리안은 말하지 않기로 선택한 사람.",
+    desc:"둘 다 감정을 쉽게 꺼내지 않아요. 그래서 오히려 서로가 편할 수 있어요. 줄리안은 당신이 먼저 다가오지 않는다는 걸 알아채고 — 그게 마음에 걸릴 거예요. 새벽에 혼자 있다가 연락이 오면, 그게 시작이에요.",
+    warn:"주의: 둘 다 먼저 말 안 하면 아무 일도 안 일어납니다.",
+    tag:"#조용한 당김 #새벽 3시의 문자 #롤렉스는 계속 돌아가는 중"
+  },
+  lucas:{
+    name:"루카스",
+    compat:"루카스와 궁합",
+    summary:"당신이 방심하는 순간, 루카스는 이미 당신을 다 파악했습니다.",
+    desc:"루카스는 상대를 관찰하고 읽는 사람이에요. 당신이 감추려 할수록 더 재밌어하는 타입이에요. 위험하다는 걸 알면서도 자꾸 시선이 가는 관계 — 루카스가 딱 그 자리에 있을 거예요.",
+    warn:"주의: 루카스가 먼저 웃으면 이미 늦었습니다.",
+    tag:"#읽히는 게 불편한데 싫지 않음 #능글맞은데 진심인 순간"
+  },
+  matthew:{
+    name:"매튜",
+    compat:"매튜와 궁합",
+    summary:"규칙 안에서 단단한 사람. 당신이 그 선 안쪽으로 들어오는 걸 허락받은 몇 안 되는 사람이에요.",
+    desc:"매튜는 선이 명확하고 감정을 잘 드러내지 않아요. 근데 한번 신뢰가 생기면 그 선 안쪽으로 당신을 들이는 사람이에요. 겉으로는 차갑고 규칙적인데 — 당신한테만 넥타이를 약간 느슨하게 풀어요.",
+    warn:"주의: 공문이 당신 앞으로 날아오면 관심의 표현입니다.",
+    tag:"#선 안쪽의 온도 #넥타이가 느슨해지는 순간 #기준이 곧 마음"
+  },
+  jace:{
+    name:"제이스",
+    compat:"제이스와 궁합",
+    summary:"나쁜 의도가 없는데 자꾸 신경 쓰이는 사람. 그게 제이스예요.",
+    desc:"제이스는 계산이 없어요. 그래서 오히려 더 당황스러울 수 있어요. 뭘 원하는지 모르겠는데 자꾸 옆에 있고, 전술 무시하고 골 넣고 아무렇지 않은 표정으로 당신을 쳐다봐요. '근데 들어갔잖아요' — 이 말이 왜 이렇게 마음에 걸리는지 모르겠죠?",
+    warn:"주의: 제이스는 진심이에요. 그게 더 무서운 거예요.",
+    tag:"#예측 불가 #순수한데 위험함 #근데 들어갔잖아요"
+  }
+};
+
+/* 날짜 */
+(function(){
+  var D=['일','월','화','수','목','금','토'],n=new Date();
+  var el=document.getElementById('dout');
+  if(el)el.textContent=n.getFullYear()+'년 '+(n.getMonth()+1)+'월 '+n.getDate()+'일('+D[n.getDay()]+') · London';
+})();
+
+/* 투표 */
+(function(){
+  var rows=document.querySelectorAll('.vote-row');
+  var maxV=Math.max.apply(null,[].slice.call(rows).map(function(r){return +r.dataset.v;}));
+  rows.forEach(function(row){
+    row.addEventListener('click',function(){
+      if(this.classList.contains('voted'))return;
+      this.classList.add('voted');
+      var newV=+this.dataset.v+1;
+      this.dataset.v=newV;
+      var cnt=this.querySelector('.vcnt');
+      if(cnt)cnt.textContent=newV.toLocaleString();
+      maxV=Math.max(maxV,newV);
+      rows.forEach(function(r){var bar=r.querySelector('.vbar');if(bar)bar.style.width=Math.round(+r.dataset.v/maxV*100)+'%';});
+    });
+  });
+  /* 모달 오버레이 클릭 닫기 */
+  ['pmodal','relmodal','testmodal','permodal'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
+  });
+})();
 </script>
 </head>
 <body>
@@ -397,7 +525,7 @@ window.showResult=function(){
       <span class="cap">▲ 테이블 거리: 4m. 주문: 아메리카노 설탕 없이. 동일. 사진=독자 제보</span>
     </div>
     <div class="bt">
-      <p>평소 라커룸에서도 눈을 마주치지 않는 두 선수가 같은 카페에서 목격됐다. 테이블 거리는 4m. 주문은 아메리카노, 설탕 없이. 동일.</p>
+      <p>팀 내 사이 나쁘기로 유명한 두 선수 — 줄리안과 루카스. 평소 라커룸에서도 눈을 마주치지 않는 두 사람이 같은 카페에서 목격됐다. 테이블 거리는 4m. 주문은 아메리카노, 설탕 없이. 동일.</p>
       <p>퇴장 시각은 2분 차이였다. "같이 나간 게 아니라고 확신할 수 없었다." — 목격자 최종 증언.</p>
     </div>
     <div class="pq">"거기 있었던 건 맞는데, 그 사람은 못 봤습니다."<cite>— Vance. Rivera도 정확히 같은 말. 본지는 믿지 않는다</cite></div>
@@ -465,7 +593,7 @@ window.showResult=function(){
     <p style="font-family:'Noto Serif KR',serif;font-size:10px;color:var(--gray);margin-top:3px">※ 행 탭하면 투표 가능. 당사자들은 "별 일 아니다" 주장 중.</p>
 
     <hr class="rn">
-    <div class="pq">"매튜이 라커 봉인한 공문 액자로 팔아주세요. 살게요."<cite>— 시즌권 8년차 익명 독자</cite></div>
+    <div class="pq">"매튜가 라커 봉인한 공문 액자로 팔아주세요. 살게요."<cite>— 시즌권 8년차 익명 독자</cite></div>
     <div class="pq">"화보집: 4명이 서로 다른 방향 보는 컷. 제목은 '우리는 팀이다'."<cite>— @현생오프 (본지 지정 공식 팬 닉네임 1호)</cite></div>
     <div class="adbx">
       <div class="at">킹스브릿지 공식 굿즈샵</div>
@@ -488,136 +616,5 @@ window.showResult=function(){
   </div>
 </div>
 
-<script>
-/* 데이터 등록 — window._ 전역으로 */
-window._PL={
-  julian:{name:"줄리안",pos:"STRIKER · ST",number:"9",stats:[{v:"19",k:"Goals"},{v:"7",k:"Assists"},{v:"87%",k:"Dribble"},{v:"9.1",k:"Rating"},{v:"£72M",k:"Value"},{v:"∞",k:"Ego"}],scandals:["새벽 3시 메이페어 클럽 출입 (이번 주)","PSG 이적 루머 — 부인 후 파리행 항공편 확인","카페 우연 목격 — 루카스와 동일 주문","기자회견 감독 발언 롤렉스 만지며 정정","VIP 요트 파티 단독 전세 논란"],rumour:67},
-  lucas:{name:"루카스",pos:"MIDFIELDER · MF",number:"11",stats:[{v:"8",k:"Goals"},{v:"14",k:"Assists"},{v:"91%",k:"Pass"},{v:"8.3",k:"Rating"},{v:"£51M",k:"Value"},{v:"99",k:"Charisma"}],scandals:["매튜 주장에 의해 라커 3일째 봉인 중","팀 단톡방 불만 이모지 도배 — 전원 읽음","바르셀로나 이적 루머 (부인 중)","카페 우연 목격 — 줄리안과 동일 주문","타투 규정 위반 심의 중"],rumour:44},
-  matthew:{name:"매튜",pos:"CAPTAIN · CB",number:"5",stats:[{v:"2",k:"Goals"},{v:"1",k:"Assists"},{v:"96%",k:"Tackles"},{v:"8.6",k:"Rating"},{v:"£48M",k:"Value"},{v:"강박",k:"결벽"}],scandals:["루카스 라커 '위생 점검' 공문으로 봉인","팀 단톡방에 '규정준수' 스티커로 응수","기자회견 넥타이 여밈 강박 — 17회 포착","제이스 전술 무시 사건 처리 중","이적설 본인 직접 부인"],rumour:12},
-  jace:{name:"제이스",pos:"WINGER · WG",number:"7",stats:[{v:"11",k:"Goals"},{v:"9",k:"Assists"},{v:"93%",k:"Speed"},{v:"8.0",k:"Rating"},{v:"£38M",k:"Value"},{v:"??",k:"공감능력"}],scandals:["전술 무시 단독 돌파 후 골 — '근데 들어갔잖아요'","주장 매튜 기자회견 중 침묵 유발","새벽 클럽 동행 의혹 (줄리안과)","맨시티 스카우트 3경기 연속 목격","훈련 중 감독 전술 설명 중 딴 생각 포착"],rumour:38},
-  coach:{name:"Gareth Holloway",pos:"HEAD COACH",number:"—",stats:[{v:"68%",k:"승률"},{v:"12",k:"기자회견"},{v:"1",k:"답변종류"},{v:"23",k:"거짓말"},{v:"55",k:"나이"},{v:"∞",k:"뻔뻔함"}],scandals:["기자회견 12분간 동일 답변 반복","선수 새벽 외출 '컨디션 관리' 해명","스캔들 무마 구단주 공모 의혹","팀 전술 '선수들만 아는 비밀' 발언","라커룸 사건 '열정적 소통'으로 서술"],rumour:55}
-};
-window._PERSONAS={
-  vip:{icon:"💰",name:"VIP 스폰서 자제",desc:"아버지가 킹스브릿지 최대 후원자. 구단 내에서 공식적으로는 '건드리면 안 되는 존재'로 분류된다. 비공식적으로는 어떻게 분류되는지가 문제.",reacts:[{name:"줄리안",txt:"\"오, 크로우 회장 자제분? ...관심 없어요.\" (롤렉스 만지작. 관심 있음)"},{name:"루카스",txt:"\"후원자 자제라고요? 재밌네요.\" (목덜미 스캔 중)"},{name:"매튜",txt:"\"규정상 특혜는 없습니다.\" (넥타이 여밈. 표정은 복잡)"},{name:"제이스",txt:"\"와 아버지가 돈 많아요? 저랑 친구 해요.\""}],route:"추천 루트: 구단 VIP 박스 → 훈련장 관람 → '우연한' 라커룸 조우. 권력이 있어서 무시할 수 없고, 인간이라서 무시하고 싶은 4인방의 딜레마 시작."},
-  analyst:{icon:"📊",name:"구단 전속 분석관",desc:"전술 데이터 분석 계약직으로 소환됐다. 선수들의 경기 데이터를 다루는 업무인데 오늘 밤 어쩌다 보니 용도가 완전히 달라졌다.",reacts:[{name:"줄리안",txt:"\"내 데이터 분석하러 왔다고요? 나는 데이터로 안 읽혀요.\" (틀림)"},{name:"루카스",txt:"\"xG 수치 말고 나한테 관심 있는 거 있어요?\" (능글맞게)"},{name:"매튜",txt:"\"분석 결과를 공식 보고서로 제출하세요.\" (선 긋는 중)"},{name:"제이스",txt:"\"제 데이터 보면 뭐가 나와요?\""}],route:"추천 루트: 경기 후 데이터 미팅 → 야근 중 우연한 조우 → '분석 대상'이 달라지는 순간."},
-  reporter:{icon:"🎙️",name:"스포츠 전문 기자",desc:"킹스브릿지 담당 취재 기자. 기사를 쓰러 왔는데 어느 순간 내가 기사가 됐다.",reacts:[{name:"줄리안",txt:"\"오프 더 레코드로 말하는데... 녹음하고 있죠?\" (알면서 말함)"},{name:"루카스",txt:"\"기자한테 이러면 안 되는 거 알아요. 그래서 재밌는 거고.\""},{name:"매튜",txt:"\"공식 인터뷰 외 발언은 인용 불가입니다.\" (그러나 말이 많아짐)"},{name:"제이스",txt:"\"저 기사 나면 SNS에 공유해줘요!\""}],route:"추천 루트: 기자회견 → 단독 인터뷰 요청 → 취재와 사생활의 경계가 무너지는 순간."},
-  medic:{icon:"💊",name:"구단 의료 스태프",desc:"선수 컨디션 관리 담당. 어떤 선수들은 '컨디션 체크'의 범위를 다르게 이해하고 있는 것 같다.",reacts:[{name:"줄리안",txt:"\"나 어디 아픈 데 없어요. 그냥 있어도 되나요?\""},{name:"루카스",txt:"\"어깨 여기가 좀 뭉쳐서요.\" (뭉친 부위가 계속 늘어남)"},{name:"매튜",txt:"\"정기 검진 일정에 따라 진행하겠습니다.\" (유일하게 제대로 협조)"},{name:"제이스",txt:"\"발목이 자주 삐는데 이게 정상이에요? 진지하게요.\""}],route:"추천 루트: 정기 컨디션 체크 → 부상 선수 단독 케어 → 경기장 밖 선수들의 민낯과 마주하는 순간."},
-  rival:{icon:"⚽",name:"라이벌 구단 선수",desc:"경기장에서는 적이다. 그런데 이렇게 됐다. 팀 동료들이 알면 큰일 나는 상황.",reacts:[{name:"줄리안",txt:"\"적팀 선수? ...더 흥미롭네요.\" (롤렉스 멈춤)"},{name:"루카스",txt:"\"경기장에서 만났을 때랑 지금이랑 완전 다르죠?\""},{name:"매튜",txt:"\"이건 규정 위반입니다.\" (알면서도 그 자리에 있음)"},{name:"제이스",txt:"\"적팀이면 경기 때 파울 하면 안 되겠네요. 고민해볼게요.\""}],route:"추천 루트: 경기 후 믹스드존 → 우연한 재조우 → 유니폼 바깥의 관계가 시작되는 순간."},
-  free:{icon:"✏️",name:"자유 설정",desc:"정해진 역할 없이 킹스브릿지 FC에 발을 들인 당신. 어떤 이유든, 어떤 포지션이든.",reacts:[{name:"줄리안",txt:"\"당신이 누군지 모르겠는데.\" (그래서 더 신경 쓰임)"},{name:"루카스",txt:"\"설정이 없다는 게 제일 흥미로운 설정이죠.\""},{name:"매튜",txt:"\"신원 확인이 필요합니다.\" (공문 준비 중)"},{name:"제이스",txt:"\"저랑 친구 해요!\""}],route:"추천 루트: 완전 자유. 시작설정에서 원하는 배경을 직접 써주세요."}
-};
-window._RELATIONS=[
-  {id:'julian',name:'줄리안',rels:[{n:'루카스',tag:'unk',l:'카페 우연 목격. 동일 주문. 퇴장 2분 차이'},{n:'매튜',tag:'hos',l:'세리머니 때 눈도 안 마주침. 서로 존재 부정 중'},{n:'제이스',tag:'unk',l:'새벽 클럽 동행 의혹. 유이하게 줄리안 옆에 있을 수 있는 인물'}]},
-  {id:'lucas',name:'루카스',rels:[{n:'줄리안',tag:'unk',l:'동일 주문 카페 목격. 47분간 폰만 봄'},{n:'매튜',tag:'hos',l:'라커 봉인 공문 발행인. 단톡방 전쟁 3일째'},{n:'제이스',tag:'neu',l:'팀 내 유일한 단톡방 활성 멤버 연대 의혹'}]},
-  {id:'matthew',name:'매튜',rels:[{n:'줄리안',tag:'hos',l:'기자회견 동시 도착 후 2m 간격 유지'},{n:'루카스',tag:'hos',l:'라커 봉인 공문 발행. 기준이 곧 규정'},{n:'제이스',tag:'hos',l:'전술 무시 골 사건. 주장으로서 가장 힘든 관계'}]},
-  {id:'jace',name:'제이스',rels:[{n:'줄리안',tag:'unk',l:'새벽 클럽 동행 의혹. 유이하게 줄리안 옆에 있을 수 있는 인물'},{n:'루카스',tag:'neu',l:'단톡방 유이 활성 멤버. 비공식 연대'},{n:'매튜',tag:'hos',l:'전술 무시 후 주장 침묵 유발. 현재진행형'}]}
-];
-window._QS=[
-  {
-    q:"연애할 때 나는?",
-    sub:"솔직하게 골라주세요",
-    opts:[
-      {t:"관심 있어도 티 안 냄. 상대가 먼저 오게 만든다",s:"julian"},
-      {t:"분위기 보다가 적당한 타이밍에 치고 들어간다",s:"lucas"},
-      {t:"좋으면 그냥 직진. 계산 없이",s:"matthew"},
-      {t:"좋은지 아닌지 잘 모르겠는데 자꾸 생각난다",s:"jace"}
-    ]
-  },
-  {
-    q:"나의 일상 분위기는?",
-    sub:"가장 가까운 걸 골라주세요",
-    opts:[
-      {t:"조용하고 루틴 있음. 혼자 있는 시간이 편함",s:"julian"},
-      {t:"즉흥적이고 분위기 탐. 사람 읽는 게 재밌음",s:"lucas"},
-      {t:"계획적이고 정돈된 게 좋음. 예상 밖 상황이 불편함",s:"matthew"},
-      {t:"활발하고 일단 저지름. 나중에 수습",s:"jace"}
-    ]
-  },
-  {
-    q:"끌리는 상대 타입은?",
-    sub:"이상형에 가까운 걸로",
-    opts:[
-      {t:"겉은 차갑고 속은 다른 사람. 반전 있는 타입",s:"julian"},
-      {t:"위험한 냄새 나는데 나한테만 다른 사람",s:"lucas"},
-      {t:"믿을 수 있고 안정적인 사람. 근데 은근 강함",s:"matthew"},
-      {t:"예측 불가인데 순수함. 나쁜 의도가 없는 사람",s:"jace"}
-    ]
-  },
-  {
-    q:"갈등 상황에서 나는?",
-    sub:"마지막 질문이에요",
-    opts:[
-      {t:"말 안 하고 거리 둠. 상대가 눈치채길 기다림",s:"julian"},
-      {t:"웃으면서 넘기는 척하다 나중에 한 방",s:"lucas"},
-      {t:"감정보다 상황 정리가 먼저. 선 긋고 처리",s:"matthew"},
-      {t:"왜 갈등인지 모름. 진짜로. 설명해줘야 함",s:"jace"}
-    ]
-  }
-];
-window._RS={
-  julian:{
-    name:"줄리안",
-    compat:"줄리안과 궁합",
-    summary:"당신은 말하지 않아도 읽히는 사람, 줄리안은 말하지 않기로 선택한 사람.",
-    desc:"둘 다 감정을 쉽게 꺼내지 않아요. 그래서 오히려 서로가 편할 수 있어요. 줄리안은 당신이 먼저 다가오지 않는다는 걸 알아채고 — 그게 마음에 걸릴 거예요. 새벽에 혼자 있다가 연락이 오면, 그게 시작이에요.",
-    warn:"주의: 둘 다 먼저 말 안 하면 아무 일도 안 일어납니다.",
-    tag:"#조용한 당김 #새벽 3시의 문자 #롤렉스는 계속 돌아가는 중"
-  },
-  lucas:{
-    name:"루카스",
-    compat:"루카스와 궁합",
-    summary:"당신이 방심하는 순간, 루카스는 이미 당신을 다 파악했습니다.",
-    desc:"루카스는 상대를 관찰하고 읽는 사람이에요. 당신이 감추려 할수록 더 재밌어하는 타입이에요. 위험하다는 걸 알면서도 자꾸 시선이 가는 관계 — 루카스가 딱 그 자리에 있을 거예요.",
-    warn:"주의: 루카스가 먼저 웃으면 이미 늦었습니다.",
-    tag:"#읽히는 게 불편한데 싫지 않음 #능글맞은데 진심인 순간"
-  },
-  matthew:{
-    name:"매튜",
-    compat:"매튜와 궁합",
-    summary:"규칙 안에서 단단한 사람. 당신이 그 선 안쪽으로 들어오는 걸 허락받은 몇 안 되는 사람이에요.",
-    desc:"매튜는 선이 명확하고 감정을 잘 드러내지 않아요. 근데 한번 신뢰가 생기면 그 선 안쪽으로 당신을 들이는 사람이에요. 겉으로는 차갑고 규칙적인데 — 당신한테만 넥타이를 약간 느슨하게 풀어요.",
-    warn:"주의: 공문이 당신 앞으로 날아오면 관심의 표현입니다.",
-    tag:"#선 안쪽의 온도 #넥타이가 느슨해지는 순간 #기준이 곧 마음"
-  },
-  jace:{
-    name:"제이스",
-    compat:"제이스와 궁합",
-    summary:"나쁜 의도가 없는데 자꾸 신경 쓰이는 사람. 그게 제이스예요.",
-    desc:"제이스는 계산이 없어요. 그래서 오히려 더 당황스러울 수 있어요. 뭘 원하는지 모르겠는데 자꾸 옆에 있고, 전술 무시하고 골 넣고 아무렇지 않은 표정으로 당신을 쳐다봐요. '근데 들어갔잖아요' — 이 말이 왜 이렇게 마음에 걸리는지 모르겠죠?",
-    warn:"주의: 제이스는 진심이에요. 그게 더 무서운 거예요.",
-    tag:"#예측 불가 #순수한데 위험함 #근데 들어갔잖아요"
-  }
-};
-
-/* 날짜 */
-(function(){
-  var D=['일','월','화','수','목','금','토'],n=new Date();
-  var el=document.getElementById('dout');
-  if(el)el.textContent=n.getFullYear()+'년 '+(n.getMonth()+1)+'월 '+n.getDate()+'일('+D[n.getDay()]+') · London';
-})();
-
-/* 투표 */
-(function(){
-  var rows=document.querySelectorAll('.vote-row');
-  var maxV=Math.max.apply(null,[].slice.call(rows).map(function(r){return +r.dataset.v;}));
-  rows.forEach(function(row){
-    row.addEventListener('click',function(){
-      if(this.classList.contains('voted'))return;
-      this.classList.add('voted');
-      var newV=+this.dataset.v+1;
-      this.dataset.v=newV;
-      var cnt=this.querySelector('.vcnt');
-      if(cnt)cnt.textContent=newV.toLocaleString();
-      maxV=Math.max(maxV,newV);
-      rows.forEach(function(r){var bar=r.querySelector('.vbar');if(bar)bar.style.width=Math.round(+r.dataset.v/maxV*100)+'%';});
-    });
-  });
-  /* 모달 오버레이 클릭 닫기 */
-  ['pmodal','relmodal','testmodal','permodal'].forEach(function(id){
-    var el=document.getElementById(id);
-    if(el)el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
-  });
-})();
-</script>
-  julian:{name:"줄리안",pos:"STRIKER · ST",number:"9",stats:[{v:"19",k:"Goals"},{v:"7",k:"Assists"},{v:"87%",k:"Dribble"},{v:"9.1",k:"Rating"},{v:"£72M",k:"Value"},{v:"∞",k:"Ego"}],scandals:["새벽 3시 메이페어 클럽 출입 (이번 주)","PSG 이적 루머 — 부인 후 파리행 항공편 확인","카페 우연 목격 — 루카스와 동일 주문","기자회견 감독 발언 롤렉스 만지며 정정","VIP 요트 파티 단독 전세 논란"],rumour:67},
 </body>
 </html>
